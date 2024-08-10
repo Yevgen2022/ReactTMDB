@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CartOfOneMovie from '../CartOfOneMovie/CartOfOneMovie'; 
+import './SliderOfMovie.css'
 
 const SliderOfMovie = ({ fetchMovies }) => {
   const [items, setItems] = useState([]);
@@ -42,6 +43,7 @@ const SliderOfMovie = ({ fetchMovies }) => {
             key={item.id}
             title={item.title || item.name}
             posterPath={item.poster_path}
+            releaseDate={item.release_date}
           />
         ))}
       </div>
