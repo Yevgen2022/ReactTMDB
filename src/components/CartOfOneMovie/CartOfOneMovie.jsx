@@ -1,40 +1,19 @@
-import React, { useEffect, useState } from "react";
-
-import tmdbApi from "../../service/tmdbSevice";
+import React from "react";
 
 
-
-const CartOfOneMovie = () => {
-    const [movies, setMovies] = useState([])
-
-
-    useEffect(() => {
-        const fetchMovies = async () => {
-            const data = await tmdbApi.fetchPopularMovies();
-            setMovies(data);
-        };
-        fetchMovies();
-    }, []);
-
-    console.log(movies);
+const CartOfOneMovie = ({ title, posterPath }) => {
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 sm:grid-cols-3 gap-4">
-            {movies.map((movie) => (
-                <div key={movie.id} className="flex flex-col items-center">
-                    <h3 className="text-lg font-semibold mb-2 text-center">{movie.title}</h3>
-                    <div className="h-96 max-w-xs overflow-hidden border rounded-xl">
-                        <img
-                            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                            alt={movie.title}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </div>
-            ))}
+        <div className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300">
+            <h3 className="text-lg font-semibold mb-2 text-center">{title}</h3>
+            <div className="h-96 max-w-xs overflow-hidden border rounded-xl">
+                <img
+                    src={`https://image.tmdb.org/t/p/w300${posterPath}`}
+                    alt={title}
+                    className="w-full h-full object-cover "
+                />
+            </div>
         </div>
-
-
     )
 }
 
