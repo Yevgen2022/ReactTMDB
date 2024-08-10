@@ -1,0 +1,5 @@
+
+
+.navBar__li{
+    @apply  text-black hover:text-white hover:cursor-pointer active:text-black text-2xl md:text-lg
+}
