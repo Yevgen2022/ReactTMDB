@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/ReactTMDB/static/css/main.f855e6bc.css",
-    "main.js": "/ReactTMDB/static/js/main.6ee6d987.js",
-    "static/js/453.1ed990a7.chunk.js": "/ReactTMDB/static/js/453.1ed990a7.chunk.js",
-    "static/media/logo.svg": "/ReactTMDB/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/ReactTMDB/static/css/main.c539a5a2.css",
+    "main.js": "/ReactTMDB/static/js/main.7970f9a9.js",
     "index.html": "/ReactTMDB/index.html",
-    "main.f855e6bc.css.map": "/ReactTMDB/static/css/main.f855e6bc.css.map",
-    "main.6ee6d987.js.map": "/ReactTMDB/static/js/main.6ee6d987.js.map",
-    "453.1ed990a7.chunk.js.map": "/ReactTMDB/static/js/453.1ed990a7.chunk.js.map"
+    "main.c539a5a2.css.map": "/ReactTMDB/static/css/main.c539a5a2.css.map",
+    "main.7970f9a9.js.map": "/ReactTMDB/static/js/main.7970f9a9.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.6ee6d987.js"
+    "static/css/main.c539a5a2.css",
+    "static/js/main.7970f9a9.js"
   ]
 }
