@@ -8,6 +8,7 @@ const CartOfOneMovie = ({ title, posterPath, releaseDate }) => {
 
             <div className="h-96 max-w-xs overflow-hidden border rounded-xl flex flex-col items-center">
                 <img
+                    loading="lazy"
                     src={`https://image.tmdb.org/t/p/w220_and_h330_face/${posterPath}`}   //w300${posterPath}
                     alt={title}
                     className="w-full h-full inline-block"
