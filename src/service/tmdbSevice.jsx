@@ -34,36 +34,6 @@ const tmdbApi = {
         }
     },
 
-
-
-
-
-
-
-    fetchPopularTVShows: async () => {
-        try {
-            const response = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data.results;
-        } catch (error) {
-            console.error('Error fetching popular TV shows:', error);
-            return [];
-        }
-    },
-
-
-
-
-    
-    // fetchMovieDetails: async (movieId) => {
-    //     const response = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
-    //     return response.json();
-    // },
-
-
 };
 
 export default tmdbApi;

@@ -11,10 +11,11 @@ const CartOfOneMovie = ({ movieID,title, posterPath, releaseDate }) => {
     const getMovieByID = () => {
         navigate(`/movie/${movieID}?api_key=${API_KEY}`)
     }
+    
 
     return (
         <div onClick={getMovieByID}
-            className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300 bg-white">
+            className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300">
 
             <div className="h-96 max-w-xs overflow-hidden border rounded-xl flex flex-col items-center">
                 <img
