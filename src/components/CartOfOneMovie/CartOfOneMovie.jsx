@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import { API_KEY, IMAGE_BASE_URL } from "../../config"; 
+
 
 const CartOfOneMovie = ({ movieID,title, posterPath, releaseDate }) => {
-    const API_KEY = '67d62e560168631aec9f199164512b42';
     const navigate = useNavigate();
+
     const getMovieByID = () => {
         navigate(`/movie/${movieID}?api_key=${API_KEY}`)
     }
-
 
     return (
         <div onClick={getMovieByID}
@@ -18,7 +19,7 @@ const CartOfOneMovie = ({ movieID,title, posterPath, releaseDate }) => {
             <div className="h-96 max-w-xs overflow-hidden border rounded-xl flex flex-col items-center">
                 <img
                     loading="lazy"
-                    src={`https://image.tmdb.org/t/p/w220_and_h330_face/${posterPath}`}   //w300${posterPath}
+                    src={`${IMAGE_BASE_URL}/w220_and_h330_face/${posterPath}`}   //w300${posterPath}
                     alt={title}
                     className="w-full h-full inline-block"
                 />
