@@ -41,6 +41,7 @@ const SliderOfMovie = ({ fetchMovies }) => {
         {pages[currentPage]?.map((item) => (
           <CartOfOneMovie
             key={item.id}
+            movieID={item.id}
             title={item.title || item.name}
             posterPath={item.poster_path}
             releaseDate={item.release_date}

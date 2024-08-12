@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
-const CartOfOneMovie = ({ title, posterPath, releaseDate }) => {
+const CartOfOneMovie = ({ movieID,title, posterPath, releaseDate }) => {
+    const API_KEY = '67d62e560168631aec9f199164512b42';
+    const navigate = useNavigate();
+    const getMovieByID = () => {
+        navigate(`/movie/${movieID}?api_key=${API_KEY}`)
+    }
+
 
     return (
-        <div className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300 bg-white">
+        <div onClick={getMovieByID}
+            className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300 bg-white">
 
             <div className="h-96 max-w-xs overflow-hidden border rounded-xl flex flex-col items-center">
                 <img
@@ -19,7 +28,7 @@ const CartOfOneMovie = ({ title, posterPath, releaseDate }) => {
                 <h2 className="text-lg font-semibold mb-2 text-center">{title}</h2>
                 <p className="">{releaseDate}</p>
             </div>
-            
+
 
         </div >
     )

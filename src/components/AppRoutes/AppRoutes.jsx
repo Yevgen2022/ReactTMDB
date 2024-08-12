@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from '../../Pages/HomePage/HomePage';
 import MovieDetailPage from '../../Pages/MovieDetailPage/MovieDetailPage';
 import FavoritePage from '../../Pages/FavoritePage/FavoritePage';
-// import { useRoutes } from 'react-router-dom';
+import OnPageOfMovie from '../../Pages/OnePageOfMovie/OnePageOfMovie';
 
 const AppRoutes = () => {
   return (      
@@ -11,6 +11,7 @@ const AppRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/movie-detail" element={<MovieDetailPage />} />
         <Route path="/favorites" element={<FavoritePage />} />
+        <Route path="/movie/:movieID" element={<OnPageOfMovie />}/>
       </Routes>   
   );
 };
