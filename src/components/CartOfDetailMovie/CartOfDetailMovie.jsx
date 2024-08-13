@@ -21,8 +21,6 @@ const CartOfDetailMovie = () => {
         loadMovie();
     }, [movieID]);
 
-    // console.log(oneMovie);
-
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -50,68 +48,64 @@ const CartOfDetailMovie = () => {
 
 
     return (
-        <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden flex flex-row items-center justify-between p-10">
+        <div className="relative w-full h-auto md:h-[600px] lg:h-[700px] overflow-hidden flex flex-col md:flex-row items-center justify-between p-4 sm:p-6 md:p-8 lg:p-10">
 
-            {/* poster and background */}
-            <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${oneMovie.backdrop_path})`,
-                }}
-            >
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+    {/* Poster and background */}
+    <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/original/${oneMovie.backdrop_path})`,
+        }}
+    >
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
+
+    {/* Постер фільму, прихований на екранах менше 768px */}
+    {/* <div className="z-10 md:w-2/4 h-auto md:h-full flex-shrink-0 mb-6 md:mb-0 hidden md:block border-2 border-white"> */}
+        <img
+            src={`https://image.tmdb.org/t/p/w300_and_h450_multi_faces${oneMovie.poster_path}`}
+            alt={`${oneMovie.title} Poster`}
+            className="w-full h-full object-contain overflow-hidden z-10 border"
+        />
+    {/* </div> */}
+
+    {/* Different information */}
+    <div className="relative z-10 w-full md:w-3/4 lg:w-2/3 p-6 sm:p-8 text-white flex flex-col justify-center flex-shrink-0">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+            <a href="#">{oneMovie.title}</a>
+            <span className="font-light"> ({year})</span>
+        </h2>
+
+        <div className="mt-4">
+            <p>{newDate}</p>
+            <p>({oneMovie.production_countries[0].iso_3166_1})</p>
+            <p>{oneMovie.runtime} min.</p>
+
+            <div className="mt-2">
+                <span className="span_genres">
+                    {oneMovie.genres.map((genre) => (
+                        <a
+                            key={genre.id}
+                            href={`#${genre.name}`}
+                            className="link_genres hover:text-red-600 active:text-white mr-1"
+                            onClick={() => handleGoToGenre(genre.id)}
+                        >
+                            {genre.name}
+                        </a>
+                    ))}
+                </span>
             </div>
-
-
-            <div className="z-10 w-full lg:w-2/4 s h-full flex-shrink-0">
-                <div
-                    className="w-full h-full bg-cover bg-center bg-no-repeat rounded-3xl"
-                    style={{
-                        backgroundImage: `url(https://image.tmdb.org/t/p/w500/${oneMovie.poster_path})`,
-                        backgroundSize: 'contain',
-                        backgroundPosition: 'center'
-                    }}
-                >
-                </div>
-            </div>
-
-            {/* diferent information */}
-
-            <div className="relative z-10 w-full lg:w-2/3 p-8 text-white flex flex-col justify-center flex-shrink-0">
-                <h2 className="text-3xl sm:text-4xl font-semibold">
-                    <a href="">{oneMovie.title}</a>
-                    <span className="font-light"> ({year})</span>
-                </h2>
-                <div>
-                    <p>{newDate}</p>
-                    {/* <p>{oneMovie.production_countries[0].name}</p> */}
-                    <p>({oneMovie.production_countries[0].iso_3166_1})</p>
-                    <p>{oneMovie.runtime} min.</p>
-
-                    <span className="span_genres">
-                        {oneMovie.genres.map((genre) => (
-                            <a
-                                key={genre.id}
-                                href={`#${genre.name}`}
-                                className="link_genres hover:text-red-600 active:text-white"
-                                onClick={() => handleGoToGenre(genre.id)}
-                            >
-                                {genre.name}, 
-                            </a>
-                        ))}
-                    </span>
-
-                </div>
-
-
-                <div className="movie_overview mt-4">
-                    <h3 className="font-thin italic">Overview</h3>
-                    <p className=" lg:text-base sm:text-xl max-w-2xl">{oneMovie.overview}</p>
-                </div>
-
-            </div>
-
         </div>
+
+        <div className="movie_overview mt-6">
+            <h3 className="font-thin italic">Overview</h3>
+            <p className="lg:text-base sm:text-lg text-sm max-w-full">{oneMovie.overview}</p>
+        </div>
+    </div>
+
+</div>
+
+
     );
 };
 
