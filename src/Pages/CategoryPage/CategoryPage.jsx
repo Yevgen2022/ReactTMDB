@@ -34,11 +34,11 @@ const CategoryPage = () => {
             <h1>Movies in Genre {genreId}</h1>
             <ul>
                 {movies.map((movie) => {
-                    const genreMovieObj = tmdbApi.createGenreObject(movie); // Зберігаємо результат функції
+                    const genreMovieObj = tmdbApi.createGenreObject(movie); 
                     return (
                         <li key={movie.id}>
                             {/* <a href={`/movie/${movie.id}`}> */}
-                            <GenrePartMovie {...genreMovieObj} /> {/* Передаємо об'єкт як пропси */}
+                            <GenrePartMovie {...genreMovieObj} /> 
                             {/* </a> */}
                         </li>
                     );

@@ -1,5 +1,5 @@
 
-import { API_KEY, BASE_URL } from "../config";
+import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "../config";
 
 const tmdbApi = {
 
@@ -53,10 +53,11 @@ const tmdbApi = {
     },
 
      createGenreObject(movie) {
+        const size = "/w200"
         return {
             movieId: movie.id,
             movieTitle: movie.title,
-            moviePoster: movie.poster_path,
+            moviePoster: `${IMAGE_BASE_URL}${size}${movie.poster_path}`,
             movieOriginalTitle: movie.original_title,
             movieOverview: movie.overview,
             movieRelease: movie.release_date
