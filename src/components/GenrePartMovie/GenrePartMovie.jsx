@@ -1,15 +1,15 @@
 import React from "react";
+// import { useSelector } from "react-redux";
 
 const GenrePartMovie = (genreMovieObj) => {
 
-
-
+    // const genreMovieObj = useSelector((state) => state.genreName.genreObj);
 
     return (
         <div className="mx-40">
             <section className="section_genre border border-gray m-3 shadow-md flex flex-row space-x-6 rounded-xl">
 
-                <div className="genre_img  w-28 h-40 flex-shrink-0">
+                <div className="genre_img  w-28 h-auto flex-shrink-0">
                     <img src={genreMovieObj.moviePoster} alt="" className="w-full h-full object-cover rounded-l-xl" />
                 </div>
 

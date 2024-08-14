@@ -4,7 +4,7 @@ import HomePage from '../../Pages/HomePage/HomePage';
 import MovieDetailPage from '../../Pages/MovieDetailPage/MovieDetailPage';
 import FavoritePage from '../../Pages/FavoritePage/FavoritePage';
 import OnPageOfMovie from '../../Pages/OnePageOfMovie/OnePageOfMovie';
-import CategoryPage from '../../Pages/CategoryPage/CategoryPage'
+import GenrePage from '../../Pages/GenrePage/GenrePage'
 
 const AppRoutes = () => {
   return (      
@@ -13,7 +13,7 @@ const AppRoutes = () => {
         <Route path="/movie-detail" element={<MovieDetailPage />} />
         <Route path="/favorites" element={<FavoritePage />} />
         <Route path="/movie/:movieID" element={<OnPageOfMovie />}/>
-        <Route path="/discover/:genreId" element={<CategoryPage />}/>
+        <Route path="/discover/:genreId" element={<GenrePage />}/>
       </Routes>   
   );
 };

@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import tmdbApi from '../../service/tmdbSevice';
 import GenrePartMovie from '../../components/GenrePartMovie/GenrePartMovie';
+import SecondHederForGenre from '../../components/SecondHederForGenre/SecondHederForGenre';
+// import { useDispatch } from 'react-redux';
+// import { setGenreObj } from "../../Pages/GenrePage/GenreSlice";
 
-const CategoryPage = () => {
+const GenrePage = () => {
     const { genreId } = useParams();
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
+    // const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -27,18 +31,22 @@ const CategoryPage = () => {
 
 
 
-    console.log(movies)
+    console.log("Genre page",movies)////////////////////
+
+// {...genreMovieObj}
 
     return (
         <div>
-            <h1>Movies in Genre {genreId}</h1>
+            <SecondHederForGenre />
             <ul>
                 {movies.map((movie) => {
-                    const genreMovieObj = tmdbApi.createGenreObject(movie); 
+
+                     const genreMovieObj = tmdbApi.createGenreObject(movie);////////////////////////
+
                     return (
                         <li key={movie.id}>
                             {/* <a href={`/movie/${movie.id}`}> */}
-                            <GenrePartMovie {...genreMovieObj} /> 
+                            <GenrePartMovie  {...genreMovieObj} />
                             {/* </a> */}
                         </li>
                     );
@@ -48,4 +56,4 @@ const CategoryPage = () => {
     );
 };
 
-export default CategoryPage;
+export default GenrePage;

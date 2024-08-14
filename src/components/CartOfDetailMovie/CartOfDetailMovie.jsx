@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import tmdbApi from "../../service/tmdbSevice";
 import { useNavigate } from "react-router-dom";
+import { setGenreName, setGenreObj } from "../../Pages/GenrePage/GenreSlice";
+import { useDispatch } from 'react-redux';
 
 const CartOfDetailMovie = () => {
     const { movieID } = useParams();
     const [oneMovie, setOneMovie] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    // const [genre, setGenre] = useState('');
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         const loadMovie = async () => {
@@ -35,14 +40,11 @@ const CartOfDetailMovie = () => {
 
     const newDate = releaseDate.split('-').reverse().join('/');
 
-
-    // let genres = oneMovie.genres.map(el => el.name);
-    // console.log(genres)
-
-
-    const handleGoToGenre = (genreId) => {
-        navigate(`/discover/${genreId}`);
-        console.log('After navigate:');
+    const handleGoToGenre = (genreId,genreName) => {
+        navigate(`/discover/${genreId}`);// go to GenrePage
+        dispatch(setGenreName(genreName));
+        // dispatch(setGenreObj(oneMovie));
+        // setGenre(genreName);
     }
 
 
@@ -88,7 +90,7 @@ const CartOfDetailMovie = () => {
                             key={genre.id}
                             href={`#${genre.name}`}
                             className="link_genres hover:text-red-600 active:text-white mr-1"
-                            onClick={() => handleGoToGenre(genre.id)}
+                            onClick={() => handleGoToGenre(genre.id,genre.name)}
                         >
                             {genre.name}
                         </a>
