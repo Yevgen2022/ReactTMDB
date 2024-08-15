@@ -8,7 +8,7 @@ import CartOfOneMovie from '../CartOfOneMovie/CartOfOneMovie';
 
 const NavBar = () => {
   return (
-    <nav className="bg-gray-200 p-4">
+    <nav className="bg-gray-800 p-4">
       <ul className="flex flex-col items-center justify-around md:flex-row">
         <li className=''>
           <Link to="/" className="navBar__li">Home</Link>

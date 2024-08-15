@@ -37,7 +37,7 @@ const SliderOfMovie = ({ fetchMovies }) => {
       >
         ❮
       </button>
-      <div className="grid grid-cols-2 md:grid-cols-4 sm:grid-cols-3 gap-4 my-5">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-5">
         {pages[currentPage]?.map((item) => (
           <CartOfOneMovie
             key={item.id}

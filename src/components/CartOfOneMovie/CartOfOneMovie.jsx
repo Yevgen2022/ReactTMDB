@@ -2,36 +2,40 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { API_KEY, IMAGE_BASE_URL } from "../../config"; 
+import { API_KEY, IMAGE_BASE_URL } from "../../config";
 
 
-const CartOfOneMovie = ({ movieID,title, posterPath, releaseDate }) => {
+const CartOfOneMovie = ({ movieID, title, posterPath, releaseDate }) => {
     const navigate = useNavigate();
 
     const getMovieByID = () => {
         navigate(`/movie/${movieID}?api_key=${API_KEY}`)
     }
-    
+
+
+
+    //  mx-2  w-56 
 
     return (
-        <div onClick={getMovieByID}
-            className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300">
+        <div className="flex flex-wrap">
+            <div onClick={getMovieByID}
+                className="flex flex-col items-center hover:scale-105 active:scale-100 transition-transform duration-300 border max-w-sm min-w-40">
 
-            <div className="h-96 max-w-xs overflow-hidden border rounded-xl flex flex-col items-center">
-                <img
-                    loading="lazy"
-                    src={`${IMAGE_BASE_URL}/w220_and_h330_face/${posterPath}`}   //w300${posterPath}
-                    alt={title}
-                    className="w-full h-full inline-block"
-                />
+                <div className="h-96 max-w-xs overflow-hidden border rounded-xl flex flex-col items-center">
+                    <img
+                        loading="lazy"
+                        src={`${IMAGE_BASE_URL}/w220_and_h330_face/${posterPath}`}   //w300${posterPath}
+                        alt={title}
+                        className="w-full  inline-block object-contain"
+                    />
+                </div>
 
+
+                <div className="">
+                    <h2 className="text-lg font-semibold mb-2 text-center">{title}</h2>
+                    <p className="">{releaseDate}</p>
+                </div>
             </div>
-            <div className="">
-                <h2 className="text-lg font-semibold mb-2 text-center">{title}</h2>
-                <p className="">{releaseDate}</p>
-            </div>
-
-
         </div >
     )
 }
