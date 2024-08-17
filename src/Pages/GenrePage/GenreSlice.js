@@ -22,7 +22,6 @@ export const genreSlice = createSlice({
 
         setGenreName: (state, action) => {
             state.genreName = action.payload;
-            console.log(state.genreName);
         },
 
 

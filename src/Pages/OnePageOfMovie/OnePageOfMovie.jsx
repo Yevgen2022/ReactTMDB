@@ -22,8 +22,6 @@ const OnPageOfMovie = () => {
         loadMovie()
     }, [movieID]);
 
-    console.log(oneMovie)
-
     return (
         <div>
             {oneMovie ? (

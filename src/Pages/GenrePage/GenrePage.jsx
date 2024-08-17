@@ -29,10 +29,6 @@ const GenrePage = () => {
         return <div>Error: {error}</div>;
     }
 
-
-
-    console.log("Genre page",movies)////////////////////
-
 // {...genreMovieObj}
 
     return (

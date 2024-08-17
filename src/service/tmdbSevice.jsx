@@ -35,7 +35,6 @@ const tmdbApi = {
     },
 
     fetchMoviesByGenre: async (genreId) => {
-        console.log('fetchMoviesByGenre', genreId);
         try {
             const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=en-US`);
 
