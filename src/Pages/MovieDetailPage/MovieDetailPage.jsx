@@ -4,8 +4,9 @@ import { API_KEY, BASE_URL } from "../../config";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import tmdbApi from "../../service/tmdbSevice";
-import CartForHomePage from "../../components/CartForHomePage/CartForHomePage";
-
+import CartForHomePage from "../../components/CartForPopular/CartForPopular";
+import { setPopularItems } from "../../components/PopularSlider/PopularSliderSlice"
+import PopularSlider from "../../components/PopularSlider/PopularSlider";
 
 
 
@@ -17,9 +18,10 @@ const MovieDetailPage = () => {
     const [selectedValue, setSelectedValue] = useState("popTv");
     const [selectedPath, setSelectedPath] = useState(`${BASE_URL}/tv/popular?api_key=${API_KEY}`);
 
+
     const [curentObj, setCurentObj] = useState({})
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -27,8 +29,8 @@ const MovieDetailPage = () => {
             try {
                 const data = await tmdbApi.fetchMovieOrTvByPopular(selectedPath);
                 if (data) {
-                    ShowCurentObj(data.results)
-                    // dispatch(updateSliderData(data));
+                    // ShowCurentObj(data.results);
+                    dispatch(setPopularItems(ShowCurentObj(data.results)));
                 }
             } catch (error) {
                 console.log('Error loading data:', error);
@@ -40,48 +42,53 @@ const MovieDetailPage = () => {
 
 
     function ShowCurentObj(data) {
+        let arrForPopularSlider = []
         if (selectedValue === "popTv") {
-            const tvObj = createTvObj(data);
-            setCurentObj(tvObj);  // Використовуємо об'єкт, що повернула функція createTvObj
+            arrForPopularSlider = createTvObj(data);
+            // setCurentObj(tvObj);  // Використовуємо об'єкт, що повернула функція createTvObj
         } else if (selectedValue === "popMovie") {
-            const movieObj = createMovieObj(data);
-            setCurentObj(movieObj);  // Використовуємо об'єкт, що повернула функція createMovieObj
+            arrForPopularSlider = createMovieObj(data);
+            // setCurentObj(movieObj);  // Використовуємо об'єкт, що повернула функція createMovieObj
         }
-    }
-    
+        return arrForPopularSlider;
 
-    useEffect(() => {
-        console.log("From useEffect", curentObj)
-    }, [curentObj]);
+    }
 
     function createTvObj(data) {
-        console.log("From createTvObj:", data[0])
         let obj = {};
-        obj = {
-            id: data[0].id,
-            title: data[0].name,
-            release: data[0].first_air_date,
-            average: data[0].vote_average,
-            poster: data[0].poster_path
-        }
-        console.log("TV:",obj)
-        return obj;
+        let arr = [];
+        data.forEach((element) => {
+            obj = {
+                id: element.id,
+                title: element.name,
+                release: element.first_air_date,
+                average: element.vote_average,
+                poster: element.poster_path
+            }
+            arr.push(obj);
+        })
+        console.log(arr);
+        return arr;
     }
-
 
     function createMovieObj(data) {
-        console.log("From createMovieObj:", data[0])
         let obj = {};
-        obj ={
-            id: data[0].id,
-            title: data[0].title,
-            release: data[0].release_date,
-            average: data[0].vote_average,
-            poster: data[0].poster_path
-        }
-        console.log("Movie:",obj)
-        return obj;
+        let arr = []
+        data.forEach((element) => {
+            obj = {
+                id: element.id,
+                title: element.title,
+                release: element.release_date,
+                average: element.vote_average,
+                poster: element.poster_path
+            }
+            arr.push(obj);
+        })
+        console.log(arr);
+        return arr;
     }
+
+
 
 
     const handleChange = (event) => {
@@ -118,13 +125,14 @@ const MovieDetailPage = () => {
             </form>
 
             <div>
-                <CartForHomePage
+                {/* <CartForHomePage
                     average={curentObj.average}
                     id={curentObj.id}
                     poster={curentObj.poster}
                     release={curentObj.release}
                     title={curentObj.title}
-                />
+                /> */}
+                < PopularSlider />
             </div>
         </>
     )
