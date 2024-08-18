@@ -34,6 +34,7 @@ const tmdbApi = {
         }
     },
 
+    ////////////////////// start //////////////////////////////////////////
     fetchMoviesByGenre: async (genreId) => {
         try {
             const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=en-US`);
@@ -51,7 +52,7 @@ const tmdbApi = {
         }
     },
 
-     createGenreObject(movie) {
+    createGenreObject(movie) {
         const size = "/w200"
         return {
             movieId: movie.id,
@@ -61,7 +62,25 @@ const tmdbApi = {
             movieOverview: movie.overview,
             movieRelease: movie.release_date
         };
+    },
+    ///////////////////////// end  ////////////////////////////////////////////////
+
+    fetchMovieOrTvByPopular: async (path) => {
+        try {
+            const response = await fetch(path);
+            if (!response) {
+                throw new Error(`HTTP error! status: ${response.status} `)
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error fetching popular items:`, error);
+            return null;
+        }
     }
+
+
+
 
 };
 
