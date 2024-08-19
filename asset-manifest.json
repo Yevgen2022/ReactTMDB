@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ReactTMDB/static/css/main.25757215.css",
-    "main.js": "/ReactTMDB/static/js/main.d5e64b88.js",
+    "main.css": "/ReactTMDB/static/css/main.62604e38.css",
+    "main.js": "/ReactTMDB/static/js/main.ab4564bd.js",
     "index.html": "/ReactTMDB/index.html",
-    "main.25757215.css.map": "/ReactTMDB/static/css/main.25757215.css.map",
-    "main.d5e64b88.js.map": "/ReactTMDB/static/js/main.d5e64b88.js.map"
+    "main.62604e38.css.map": "/ReactTMDB/static/css/main.62604e38.css.map",
+    "main.ab4564bd.js.map": "/ReactTMDB/static/js/main.ab4564bd.js.map"
   },
   "entrypoints": [
-    "static/css/main.25757215.css",
-    "static/js/main.d5e64b88.js"
+    "static/css/main.62604e38.css",
+    "static/js/main.ab4564bd.js"
   ]
 }
