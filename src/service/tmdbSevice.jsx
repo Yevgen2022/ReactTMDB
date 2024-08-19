@@ -39,9 +39,6 @@ const tmdbApi = {
     },
 
 
-
-
-
     fetchMovieById: async (movieID) => {
         try {
             const response = await fetch(`${BASE_URL}/movie/${movieID}?api_key=${API_KEY}&language=en-US`);
@@ -98,7 +95,40 @@ const tmdbApi = {
             console.error(`Error fetching popular items:`, error);
             return null;
         }
+    },
+
+    ///////////////////// start   Show request and ShowObj///////////////////
+    fetchShowById: async (showID) => {
+        try {
+            const response = await fetch(`${BASE_URL}/tv/${showID}?api_key=${API_KEY}&language=en-US`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Failed to fetch movie:', error);
+            throw error;
+        }
+    },
+
+    createShowObj(showObj) {
+        let obj = {
+            backdrop_path: showObj.backdrop_path || "",
+            first_air_date: showObj.first_air_date || "",
+            genres: showObj.genres || [],
+            id: showObj.id || "",
+            name: showObj.name || "",
+            overview: showObj.overview || "",
+            vote_average: showObj.vote_average || 0,
+            poster_path: showObj.poster_path || "",
+            production_companies: showObj.production_companies || [],
+            production_countries: showObj.production_countries || []
+        }
+        return obj;
+        // return Object.assign(obj, showObj);
     }
+
+    /////////////////////  end    ///////////////////
 
 
 
