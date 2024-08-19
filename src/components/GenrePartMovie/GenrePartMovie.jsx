@@ -1,9 +1,6 @@
 import React from "react";
-// import { useSelector } from "react-redux";
 
 const GenrePartMovie = (genreMovieObj) => {
-
-    // const genreMovieObj = useSelector((state) => state.genreName.genreObj);
 
     return (
         <div className="mx-40">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_KEY, BASE_URL } from "../../config";
 import tmdbApi from "../../service/tmdbSevice";
 import { useDispatch } from 'react-redux';
-import { setPopularItems } from "../../components/PopularSlider/PopularSliderSlice";
+import { setPopularItems,setPopularValue } from "../../components/PopularSlider/PopularSliderSlice";
 
 const PopularRadioButton = () => {
     const [selectedValue, setSelectedValue] = useState("popTv");
@@ -15,6 +15,7 @@ const PopularRadioButton = () => {
                 const data = await tmdbApi.fetchMovieOrTvByPopular(selectedPath);
                 if (data) {
                     dispatch(setPopularItems(ShowCurentObj(data.results)));
+                    dispatch((setPopularValue(selectedValue)))
                 }
             } catch (error) {
                 console.log('Error loading data:', error);

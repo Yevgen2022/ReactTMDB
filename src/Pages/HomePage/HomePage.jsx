@@ -12,7 +12,7 @@ const HomePage = () => {
 const fetchTrendMovies = tmdbApi.fetchTrendMovies;
 
     return (
-        <section className="bg-gray-300">
+        <section className="">
             <div >
                 <h1 className="text-2xl font-bold text-center py-4">HOME PAGE</h1>
 

@@ -27,32 +27,6 @@ const OnPageOfMovie = () => {
             {oneMovie ? (
                 <div>
                     < CartOfDetailMovie />
-                    {/* <h2 className="movie_title">{oneMovie.title}</h2>
-                    <p className="movie_overview">{oneMovie.overview}</p>
-                    <p className="movie_buget">{oneMovie.budget}</p>
-                    <p className="movie_release">{oneMovie.release_date}</p>
-                    <p className="movi_runtime">{oneMovie.runtime}</p>
-                    <p className="movi_score">{oneMovie.vote_average}</p>
-                    <p className="movi_count">{oneMovie.vote_count}</p> */}
-
-
-                    {/* <div className="movi_bg">
-                      <img
-                      loading="lazy"
-                       src={`https://image.tmdb.org/t/p/w500/${oneMovie.backdrop_path}`} alt="" />
-                    </div> */}
-
-
-                    {/* <div className="w-80 h-96">
-                        <img
-                            loading="lazy"
-                            src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}   //w300${posterPath}
-                            alt={""}
-                            className="w-full h-auto inline-block"
-                        />
-                    </div> */}
-
-
                 </div>
             ) : (
                 <p>Loading...</p>

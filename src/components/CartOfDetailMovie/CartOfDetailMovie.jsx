@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import tmdbApi from "../../service/tmdbSevice";
 import { useNavigate } from "react-router-dom";
-import { setGenreName, setGenreObj } from "../../Pages/GenrePage/GenreSlice";
+import { setGenreName } from "../../Pages/GenrePage/GenreSlice";
 import { useDispatch } from 'react-redux';
 
 const CartOfDetailMovie = () => {
@@ -10,7 +10,6 @@ const CartOfDetailMovie = () => {
     const [oneMovie, setOneMovie] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    // const [genre, setGenre] = useState('');
     const dispatch = useDispatch();
 
 
@@ -43,8 +42,6 @@ const CartOfDetailMovie = () => {
     const handleGoToGenre = (genreId,genreName) => {
         navigate(`/discover/${genreId}`);// go to GenrePage
         dispatch(setGenreName(genreName));
-        // dispatch(setGenreObj(oneMovie));
-        // setGenre(genreName);
     }
 
 
