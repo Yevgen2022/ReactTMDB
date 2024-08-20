@@ -83,6 +83,37 @@ const tmdbApi = {
     },
     ///////////////////////// end  ////////////////////////////////////////////////
 
+    ////////////////////// start //////////////////////////////////////////
+    fetchShowByGenre: async (genreId) => {
+        try {
+            const response = await fetch(`${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=${genreId}&language=en-US`);
+
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // return result JSON
+            return await response.json();
+        } catch (error) {
+            console.error('Failed to fetch genre:', error);
+            throw error;
+        }
+    },
+
+    createShowObjectGenre(show) {
+        const size = "/w200"
+        return {
+            movieId: show.id,
+            movieTitle: show.name,
+            moviePoster: `${IMAGE_BASE_URL}${size}${show.poster_path}`,
+            movieOriginalTitle: show.original_name,
+            movieOverview: show.overview,
+            movieRelease: show.first_air_date
+        };
+    },
+    ///////////////////////// end  ////////////////////////////////////////////////
+
     fetchMovieOrTvByPopular: async (path) => {
         try {
             const response = await fetch(path);
@@ -122,7 +153,8 @@ const tmdbApi = {
             vote_average: showObj.vote_average || 0,
             poster_path: showObj.poster_path || "",
             production_companies: showObj.production_companies || [],
-            production_countries: showObj.production_countries || []
+            production_countries: showObj.production_countries || [],
+            // runtime: showObj.runtime
         }
         return obj;
         // return Object.assign(obj, showObj);

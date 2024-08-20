@@ -1,49 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import tmdbApi from '../../service/tmdbSevice';
 import GenrePartMovie from '../../components/GenrePartMovie/GenrePartMovie';
 import SecondHederForGenre from '../../components/SecondHederForGenre/SecondHederForGenre';
-// import { useDispatch } from 'react-redux';
-// import { setGenreObj } from "../../Pages/GenrePage/GenreSlice";
 
 const GenrePage = () => {
     const { genreId } = useParams();
-    const [movies, setMovies] = useState([]);
+    const [items, setItems] = useState([]);
     const [error, setError] = useState(null);
-    // const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchMovies = async () => {
+        const fetchItems = async () => {
             try {
-                const data = await tmdbApi.fetchMoviesByGenre(genreId);
-                setMovies(data.results);
+                const [moviesResponse, showsResponse] = await Promise.all([
+                    tmdbApi.fetchMoviesByGenre(genreId),
+                    tmdbApi.fetchShowByGenre(genreId)
+                ]);
+
+                const movies = moviesResponse.results || [];
+                const shows = showsResponse.results || [];
+
+                // Conect two results
+                const combinedItems = [
+                    ...movies.map(item => ({ ...item, type: 'movie' })),
+                    ...shows.map(item => ({ ...item, type: 'tv' }))
+                ];
+
+                setItems(combinedItems);
             } catch (error) {
                 setError(error.message);
             }
         };
 
-        fetchMovies();
-    }, [genreId]);
+        fetchItems();
+    }, [genreId, popularValue]);
 
     if (error) {
         return <div>Error: {error}</div>;
     }
 
-// {...genreMovieObj}
-
     return (
         <div>
             <SecondHederForGenre />
             <ul>
-                {movies.map((movie) => {
-
-                     const genreMovieObj = tmdbApi.createGenreObject(movie);////////////////////////
+                {items.map((item) => {
+                    const genreItemObj = item.type === 'movie'
+                        ? tmdbApi.createGenreObject(item)
+                        : tmdbApi.createShowObjectGenre(item);
 
                     return (
-                        <li key={movie.id}>
-                            {/* <a href={`/movie/${movie.id}`}> */}
-                            <GenrePartMovie  {...genreMovieObj} />
-                            {/* </a> */}
+                        <li key={item.id}>
+                            <GenrePartMovie {...genreItemObj} />
                         </li>
                     );
                 })}

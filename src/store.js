@@ -7,7 +7,7 @@ import popularSliderReducer from "./components/PopularSlider/PopularSliderSlice"
 export const store = configureStore ({
     reducer: {
         genreName: genreReducer,
-        popularSlider: popularSliderReducer
+        popularSlider: popularSliderReducer//slice of popular block
         
     }
 })

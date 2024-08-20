@@ -6,7 +6,7 @@ import CartForPopular from '../CartForPopular/CartForPopular';
 
 const PopularSlider = () => {
     const popularItems = useSelector(selectPopularItems);
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);  
     const itemsPerPage = 4;
 
     const handleScroll = (direction) => {
