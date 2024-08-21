@@ -8,6 +8,8 @@ import CartForHomePage from "../../components/CartForPopular/CartForPopular";
 import { setPopularItems } from "../../components/PopularSlider/PopularSliderSlice"
 import PopularSlider from "../../components/PopularSlider/PopularSlider";
 
+import { setTimeWindow } from "./popMovieOrTvSlice"
+
 
 
 // const response = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}`)
@@ -29,7 +31,14 @@ const MovieDetailPage = () => {
     // Обробник натискання для переміщення
     const handleTabClick = (tab) => {
         setActiveTab(tab);//////////Set Time Window for "Trending All"
+        dispatch(setTimeWindow(activeTab));
     };
+
+    useEffect(() => {
+        dispatch(setTimeWindow(activeTab));
+    }, [dispatch, activeTab]);
+
+
 
     const runnerStyle = {
         left: activeTab === 'day' ? '0' : 'calc(100% - 50%)', // Переміщення
