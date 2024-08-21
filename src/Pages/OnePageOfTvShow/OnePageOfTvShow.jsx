@@ -8,8 +8,6 @@ const OnePageOfTvShow = () => {
 
     return(
         <>
-        <h1>OnePageOfTvShow</h1>
-
         <CartOfDetailShow />
         </>
     )

@@ -34,7 +34,7 @@ const GenrePage = () => {
         };
 
         fetchItems();
-    }, [genreId, popularValue]);
+    }, [genreId]);
 
     if (error) {
         return <div>Error: {error}</div>;
