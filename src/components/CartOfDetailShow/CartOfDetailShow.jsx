@@ -30,7 +30,6 @@ const CartOfDetailShow = () => {
     useEffect(() => {
         if (oneShow) {
             const tvShowObj = tmdbApi.createShowObj(oneShow);
-            console.log("tvShowObj", tvShowObj);
         }
     }, [oneShow]);
 

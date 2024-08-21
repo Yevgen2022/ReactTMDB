@@ -7,8 +7,6 @@ const CartForPopular = ({ average, id, poster, release, title }) => {
     const navigate = useNavigate();
     const curentPopValue = useSelector((state) => state.popularSlider.popularValue);
 
-    console.log(curentPopValue);
-
     const getMovieByID = () => {
         if (curentPopValue === "popMovie") {
             navigate(`/movie/${id}?api_key=${API_KEY}`);
