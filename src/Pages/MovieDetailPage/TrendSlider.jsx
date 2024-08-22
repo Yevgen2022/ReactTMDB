@@ -1,13 +1,15 @@
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPopularItems } from './PopularSliderSlice';
-import CartForPopular from '../CartForPopular/CartForPopular';
+import CartGeneral from './CartGeneral';
 
-const PopularSlider = () => {
-    const popularItems = useSelector(selectPopularItems);
+const TrendSlider = () => {
+
+    const popularItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
+    // console.log("From TrendSlider popularItems",popularItems);
+
     const [currentPage, setCurrentPage] = useState(0);  
-    const itemsPerPage = 4;
+    const itemsPerPage = 5;
 
     const handleScroll = (direction) => {
         if (direction === 'left' && currentPage > 0) {
@@ -31,13 +33,13 @@ const PopularSlider = () => {
                 ❮
             </button>
             <div className="flex justify-around gap-4 my-5">
-                {pages[currentPage]?.map((item) => (
-                    <CartForPopular
+                {pages[currentPage]?.length > 0 && pages[currentPage].map((item) => (
+                    <CartGeneral
                         key={item.id}
-                        average={item.average}
+                        average={item.voteAverage}
                         id={item.id}
-                        poster={item.poster}
-                        release={item.release}
+                        poster={item.posterPath}
+                        release={item.releaseDate}
                         title={item.title}
                     />
                 ))}
@@ -53,4 +55,4 @@ const PopularSlider = () => {
     );
 };
 
-export default PopularSlider;
+export default TrendSlider;

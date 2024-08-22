@@ -2,18 +2,20 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import TrendSlider from "./TrendSlider";
+import RatingCircle from "./RatingCircle";
 
 
-import { setTimeWindow,fetchTrendMovieAndTv } from "./popMovieOrTvSlice"
+import { setTimeWindow, fetchTrendMovieAndTv } from "./popMovieOrTvSlice"
 
 const MovieDetailPage = () => {
+    const rating = 50;
 
-    const [activeTab, setActiveTab] = useState('day'); // Стан для відстеження вибраної вкладки
+
+    const [activeTab, setActiveTab] = useState('day'); // State for watching choosing element(day or week)
 
     const dispatch = useDispatch();
     const timeWindow = useSelector((state) => state.TrendMovieAndTv.timeWindow);
-    const trendMovieAndTvArr = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
-    
+
     // Click handler to move
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -21,9 +23,13 @@ const MovieDetailPage = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchTrendMovieAndTv(timeWindow));//download data according to new value of timeWindow
-    }, [dispatch, timeWindow]);
-
+        // if activeTab is changing, refresh timeWindow
+        if (timeWindow !== activeTab) {
+            dispatch(setTimeWindow(activeTab));
+        }
+        // download data according to new value of timeWindow
+        dispatch(fetchTrendMovieAndTv(activeTab));
+    }, [dispatch, activeTab, timeWindow]);
 
 
     const runnerStyle = {
@@ -44,7 +50,8 @@ const MovieDetailPage = () => {
             </div>
 
             <div>
-                < PopularSlider />
+                < TrendSlider />
+                < RatingCircle rating={ rating } />
             </div>
         </>
     )

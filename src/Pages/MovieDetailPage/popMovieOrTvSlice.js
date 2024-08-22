@@ -8,9 +8,10 @@ export const fetchTrendMovieAndTv = createAsyncThunk(
     async (timeWindow) => {
         const response = await tmdbApi.fetchTrendAll(timeWindow);
         const processeData = tmdbApi.processTrendData(response)/////return 1 object from objects(2-type).Movie and tv
+
         console.log('Fetched data:', processeData); ////////////////////////////////
 
-        return response;
+        return processeData;
     }
 );
 

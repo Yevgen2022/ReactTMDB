@@ -73,6 +73,7 @@ const tmdbApi = {
             voteCount: item.vote_count,
             genreIds: item.genre_ids || [], // Add genre_ids, if absent, then empty
             originCountry: item.origin_country || [], // Add origin_country, if absent, then empty
+            ratingPercent: item.vote_average ? Math.round((item.vote_average / 10) * 100) : 0,
         }));
     },
     //////////////////////////This we finished creating 2-object for trending block (Movie, Show) FINISH
