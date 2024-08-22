@@ -38,33 +38,43 @@ const tmdbApi = {
         }
     },
 
+
     //////////////////////////This we create 2-object for trending block (Movie, Show) START 
     fetchTrendAll: async (timeWindow) => {
         try {
-            const response = await fetch(`${BASE_URL}/trending/all/${timeWindow}/?api_key=${API_KEY}`); //&page=3
+            const response = await fetch(`${BASE_URL}/trending/all/${timeWindow}?api_key=${API_KEY}`); //&page=3
 
             // check status of request
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             const data = await response.json();
-            return data.results;
+            // Filtering only movie and series
+            const moviesAndTVShows = data.results.filter(item => item.media_type === 'movie' || item.media_type === 'tv');
+
+            return moviesAndTVShows;
         } catch (error) {
             console.error('Error fetching popular movies:', error);
             return [];
         }
     },
 
-
-    
-
-
-
-
-
-
-
+    processTrendData: (data) => {
+        return data.map(item => ({
+            id: item.id,
+            title: item.title || item.name, // Choice between title і name
+            posterPath: item.poster_path,
+            releaseDate: item.release_date || item.first_air_date, // Choice between release_date і first_air_date
+            mediaType: item.media_type, // Type of media
+            originalLanguage: item.original_language,
+            overview: item.overview,
+            popularity: item.popularity,
+            voteAverage: item.vote_average,
+            voteCount: item.vote_count,
+            genreIds: item.genre_ids || [], // Add genre_ids, if absent, then empty
+            originCountry: item.origin_country || [], // Add origin_country, if absent, then empty
+        }));
+    },
     //////////////////////////This we finished creating 2-object for trending block (Movie, Show) FINISH
 
 

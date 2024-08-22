@@ -7,7 +7,7 @@ const GenrePartMovie = (genreMovieObj) => {
             <section className="section_genre border border-gray m-3 shadow-md flex flex-row space-x-6 rounded-xl">
 
                 <div className="genre_img  w-28 h-auto flex-shrink-0">
-                    <img src={genreMovieObj.moviePoster} alt="" className="w-full h-full object-cover rounded-l-xl" />
+                    <img src={genreMovieObj.moviePoster} alt="" className="w-full h-full object-cover rounded-l-xl" loading="lazy"/>
                 </div>
 
                 <div className="dif_info flex flex-col py-4 justify-around">

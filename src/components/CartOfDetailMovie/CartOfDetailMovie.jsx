@@ -65,6 +65,7 @@ const CartOfDetailMovie = () => {
                 src={`https://image.tmdb.org/t/p/w300_and_h450_multi_faces${oneMovie.poster_path}`}
                 alt={`${oneMovie.title} Poster`}
                 className="w-full h-full object-contain overflow-hidden z-10"
+                loading="lazy"
             />
             {/* </div> */}
 

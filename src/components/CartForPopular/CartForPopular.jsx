@@ -22,6 +22,7 @@ const CartForPopular = ({ average, id, poster, release, title }) => {
                     src={`${IMAGE_BASE_URL}/w200${poster}`}
                     alt={title}
                     className="w-full h-full object-cover"
+                    loading='lazy'
                 />
             </div>
             <div className="p-4 text-center">

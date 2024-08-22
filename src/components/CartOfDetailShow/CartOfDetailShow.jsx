@@ -74,6 +74,7 @@ const CartOfDetailShow = () => {
                 src={`https://image.tmdb.org/t/p/w300_and_h450_multi_faces/${oneShow.poster_path}`}
                 alt={`${oneShow.name} Poster`}
                 className="w-full h-full object-contain overflow-hidden z-10"
+                loading="lazy"
             />
 
          
