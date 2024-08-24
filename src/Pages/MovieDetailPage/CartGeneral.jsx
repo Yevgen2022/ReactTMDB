@@ -17,7 +17,7 @@ const CartForPopular = ({ average, id, poster, release, title }) => {
 
     return (
         <div onClick={getMovieByID} className="flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-52 m-2 cursor-pointer hover:scale-105 active:scale-100 transition-transform duration-300">
-            <div className="h-80 w-full overflow-hidden rounded-lg mb-4">
+            <div className="h-80 w-full overflow-hidden rounded-t-lg mb-4">
                 <img
                     src={`${IMAGE_BASE_URL}/w200${poster}`}
                     alt={title}
@@ -27,6 +27,7 @@ const CartForPopular = ({ average, id, poster, release, title }) => {
             </div>
             <div className="p-4 text-center">
                 <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
+                {/* <h3 className="font-montserrat text-lg font-semibold mb-2 text-gray-900">{title}</h3> */}
                 <p className="text-sm text-gray-600 mb-1">Release Date: {release}</p>
                 <p className="text-sm text-gray-600">Average Rating: {average}</p>
             </div>

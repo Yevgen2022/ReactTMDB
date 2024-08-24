@@ -7,6 +7,17 @@ const RatingCircle = ({ rating }) => {
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (normalizedRating / 100) * circumference;
 
+
+    // Визначаємо колір в залежності від рейтингу
+    const getColor = (rating) => {
+        if (rating >= 75) return '#4caf50'; // зелений
+        if (rating >= 50) return '#ffeb3b'; // жовтий
+        return '#f44336'; // червоний
+    };
+
+    const color = getColor(normalizedRating);
+
+
     return (
         <div className="flex items-center justify-center w-32 h-32">
             <svg
@@ -20,19 +31,20 @@ const RatingCircle = ({ rating }) => {
                     cy="60"
                     r={radius}
                     strokeWidth={strokeWidth}
-                    fill="black"            //"none"
-                    stroke="#e0e0e0"
+                    fill="black"             //"none" Це робить внутрішню частину кола чорного кольору. "none" означало б, що внутрішня частина залишається прозорою.
+                    stroke="#e0e0e0"        // Це колір обвідки (колір контуру).
                 />
                 <circle
                     cx="60"
                     cy="60"
                     r={radius}
                     strokeWidth={strokeWidth}
-                    fill="none"
-                    stroke="#4caf50"
-                    strokeDasharray={circumference}
-                    strokeDashoffset={offset}
-                    strokeLinecap="round"
+                    fill="none"                             // Внутрішня частина цього кола прозора.
+                    //stroke={color}                       // Динамічний колір
+                    stroke="#4caf50"                      // Колір обвідки цього кола зелений.
+                    strokeDasharray={circumference}      // Це визначає довжину штрихів у межах обвідки.
+                    strokeDashoffset={offset}           // Це зміщення штриха, що використовується для створення ефекту прогресу.
+                    strokeLinecap="round"              // Кінці обвідки закруглені.
                 />
                 <text
                     x="50%"
