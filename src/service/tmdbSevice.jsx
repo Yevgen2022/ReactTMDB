@@ -42,7 +42,7 @@ const tmdbApi = {
     //////////////////////////This we create 2-object for trending block (Movie, Show) START 
     fetchTrendAll: async (timeWindow) => {
         try {
-            const response = await fetch(`${BASE_URL}/trending/all/${timeWindow}?api_key=${API_KEY}`); //&page=3
+            const response = await fetch(`${BASE_URL}/trending/all/${timeWindow}?api_key=${API_KEY}&page=9`); //&page=3
 
             // check status of request
             if (!response.ok) {

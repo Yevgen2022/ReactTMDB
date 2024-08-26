@@ -8,7 +8,7 @@ const TrendSlider = () => {
     const popularItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
     // console.log("From TrendSlider popularItems",popularItems);
 
-    const [currentPage, setCurrentPage] = useState(0);  
+    const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 5;
 
     const handleScroll = (direction) => {
@@ -24,34 +24,38 @@ const TrendSlider = () => {
     );
 
     return (
-        <div className="relative w-full overflow-hidden">
-            <button
-                className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
-                onClick={() => handleScroll('left')}
-                disabled={currentPage === 0}
-            >
-                ❮
-            </button>
-            <div className="flex justify-around gap-4 my-5 ">
-                {pages[currentPage]?.length > 0 && pages[currentPage].map((item) => (
-                    <CartGeneral
-                        key={item.id}
-                        id={item.id}
-                        poster={item.posterPath}
-                        release={item.releaseDate}
-                        title={item.title}
-                        rating={item.ratingPercent}
-                        type={item.mediaType}
-                    />
-                ))}
+        <div className='flex justify-center border border-blue-600 w-full'>
+
+            <div className="relative overflow-hidden border border-black w-4/5 my-auto">
+                <button
+                    className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+                    onClick={() => handleScroll('left')}
+                    disabled={currentPage === 0}
+                >
+                    ❮
+                </button>
+                <div className="flex justify-around gap-4 my-5 ">
+                    {pages[currentPage]?.length > 0 && pages[currentPage].map((item) => (
+                        <CartGeneral 
+                             item={item}
+                             key={item.id}
+                            // id={item.id}
+                            // poster={item.posterPath}
+                            // release={item.releaseDate}
+                            // title={item.title}
+                            // rating={item.ratingPercent}
+                            // type={item.mediaType}
+                        />
+                    ))}
+                </div>
+                <button
+                    className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+                    onClick={() => handleScroll('right')}
+                    disabled={(currentPage + 1) * itemsPerPage >= popularItems.length}
+                >
+                    ❯
+                </button>
             </div>
-            <button
-                className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
-                onClick={() => handleScroll('right')}
-                disabled={(currentPage + 1) * itemsPerPage >= popularItems.length}
-            >
-                ❯
-            </button>
         </div>
     );
 };
