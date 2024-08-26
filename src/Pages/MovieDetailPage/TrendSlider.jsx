@@ -32,15 +32,16 @@ const TrendSlider = () => {
             >
                 ❮
             </button>
-            <div className="flex justify-around gap-4 my-5">
+            <div className="flex justify-around gap-4 my-5 ">
                 {pages[currentPage]?.length > 0 && pages[currentPage].map((item) => (
                     <CartGeneral
                         key={item.id}
-                        average={item.voteAverage}
                         id={item.id}
                         poster={item.posterPath}
                         release={item.releaseDate}
                         title={item.title}
+                        rating={item.ratingPercent}
+                        type={item.mediaType}
                     />
                 ))}
             </div>
