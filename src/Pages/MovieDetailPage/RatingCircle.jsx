@@ -1,6 +1,14 @@
 import React from 'react';
 
 const RatingCircle = ({ rating }) => {
+
+    const tailwindColors = {
+        greenLow: '#bbf7d0',        //decoration-green-200 #bbf7d0
+        greenMedium: '#4ade80',     //decoration-green-400 #4ade80
+        greenStrong: '#16a34a',     //decoration-green-600   #16a34a;
+        greenHight: '#14532d'       //decoration-green-900 #14532d
+    };
+
     const normalizedRating = Math.max(0, Math.min(100, rating));
     const strokeWidth = 10;
     const radius = 40;
@@ -9,15 +17,15 @@ const RatingCircle = ({ rating }) => {
 
      // We determine the color based on the rating
      let strokeColor;
-     if (normalizedRating <= 25) {
-         strokeColor = '#FF0000'; // Red
-     } else if (normalizedRating <= 50) {
-         strokeColor = '#FF69B4'; // Orange  
-     } else if (normalizedRating <= 70) {
-         strokeColor = '#a7c957'; // ligh-green
-     } else {
-         strokeColor = '#4CAF50'; // green
-     }
+    if (normalizedRating <= 25) {
+        strokeColor = tailwindColors.greenLow;
+    } else if (normalizedRating <= 50) {
+        strokeColor = tailwindColors.greenMedium;
+    } else if (normalizedRating <= 70) {
+        strokeColor = tailwindColors.greenStrong;
+    } else {
+        strokeColor = tailwindColors.greenHight;
+    }
  
 
     return (
@@ -42,7 +50,7 @@ const RatingCircle = ({ rating }) => {
                     r={radius}
                     strokeWidth={strokeWidth}
                     fill="none"
-                    stroke="#4caf50"
+                    stroke= {strokeColor}                //"#4caf50"
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
                     strokeLinecap="round"
