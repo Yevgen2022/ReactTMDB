@@ -8,8 +8,6 @@ import RatingCircle from "./RatingCircle";
 import { setTimeWindow, fetchTrendMovieAndTv } from "./popMovieOrTvSlice"
 
 const MovieDetailPage = () => {
-    const rating = 50;
-
 
     const [activeTab, setActiveTab] = useState('day'); // State for watching choosing element(day or week)
 
@@ -51,7 +49,6 @@ const MovieDetailPage = () => {
 
             <div>
                 < TrendSlider />
-                < RatingCircle rating={ rating } />
             </div>
         </>
     )

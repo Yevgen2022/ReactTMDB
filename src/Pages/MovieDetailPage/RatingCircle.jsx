@@ -7,22 +7,24 @@ const RatingCircle = ({ rating }) => {
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (normalizedRating / 100) * circumference;
 
-
-    // Визначаємо колір в залежності від рейтингу
-    const getColor = (rating) => {
-        if (rating >= 75) return '#4caf50'; // зелений
-        if (rating >= 50) return '#ffeb3b'; // жовтий
-        return '#f44336'; // червоний
-    };
-
-    const color = getColor(normalizedRating);
-
+     // We determine the color based on the rating
+     let strokeColor;
+     if (normalizedRating <= 25) {
+         strokeColor = '#FF0000'; // Red
+     } else if (normalizedRating <= 50) {
+         strokeColor = '#FF69B4'; // Orange  
+     } else if (normalizedRating <= 70) {
+         strokeColor = '#a7c957'; // ligh-green
+     } else {
+         strokeColor = '#4CAF50'; // green
+     }
+ 
 
     return (
-        <div className="flex items-center justify-center w-32 h-32">
+        <div className="flex items-center justify-center w-16 h-16 border-none">
             <svg
-                width="120"
-                height="120"
+                width="60"
+                height="60"
                 viewBox="0 0 120 120"
                 xmlns="http://www.w3.org/2000/svg"
             >
@@ -39,19 +41,19 @@ const RatingCircle = ({ rating }) => {
                     cy="60"
                     r={radius}
                     strokeWidth={strokeWidth}
-                    fill="none"                             // Внутрішня частина цього кола прозора.
-                    //stroke={color}                       // Динамічний колір
-                    stroke="#4caf50"                      // Колір обвідки цього кола зелений.
-                    strokeDasharray={circumference}      // Це визначає довжину штрихів у межах обвідки.
-                    strokeDashoffset={offset}           // Це зміщення штриха, що використовується для створення ефекту прогресу.
-                    strokeLinecap="round"              // Кінці обвідки закруглені.
+                    fill="none"
+                    stroke="#4caf50"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={offset}
+                    strokeLinecap="round"
+                    transform="rotate(-90 60 60)"  // Обертає на -90 градусів навколо центру
                 />
                 <text
                     x="50%"
                     y="50%"
                     textAnchor="middle"
                     dy=".3em"
-                    fontSize="20"
+                    fontSize="30"
                     fontWeight="thin"
                     fill="white"       //"#333"
                 >

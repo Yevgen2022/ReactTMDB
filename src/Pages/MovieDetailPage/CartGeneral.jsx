@@ -1,35 +1,38 @@
 import React from 'react';
 import { API_KEY, IMAGE_BASE_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import RatingCircle from './RatingCircle';
 
-const CartForPopular = ({ average, id, poster, release, title }) => {
+// const CartForPopular = ({ id, poster, release, title, rating,type }) => {
+    const CartForPopular = ({ item }) => {
     const navigate = useNavigate();
-    // const curentPopValue = useSelector((state) => state.popularSlider.popularValue);
 
     const getMovieByID = () => {
-        // if (curentPopValue === "popMovie") {
-            navigate(`/movie/${id}?api_key=${API_KEY}`);
-        // } else if (curentPopValue === "popTv") {
-            // navigate(`/tv/${id}?api_key=${API_KEY}`);
-        }
-    // }
+         if (item.mediaType === "movie") {
+        navigate(`/movie/${item.id}?api_key=${API_KEY}`);
+         } else if (item.mediaType === "tv") {
+         navigate(`/tv/${item.id}?api_key=${API_KEY}`);
+    }
+     }
 
     return (
-        <div onClick={getMovieByID} className="flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-52 m-2 cursor-pointer hover:scale-105 active:scale-100 transition-transform duration-300">
-            <div className="h-80 w-full overflow-hidden rounded-t-lg mb-4">
+        <div onClick={getMovieByID} className="relative flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-48 max-w-48 m-2 cursor-pointer">
+
+            <div className="h-72 w-full overflow-hidden rounded-t-lg mb-4">
                 <img
-                    src={`${IMAGE_BASE_URL}/w200${poster}`}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                    loading='lazy'
+                    src={`${IMAGE_BASE_URL}/w200${item.posterPath}`}
+                    alt={item.title}
+                    className="w-full h-full object-fit"
+                    loading="lazy"
                 />
             </div>
-            <div className="p-4 text-center">
-                <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
-                {/* <h3 className="font-montserrat text-lg font-semibold mb-2 text-gray-900">{title}</h3> */}
-                <p className="text-sm text-gray-600 mb-1">Release Date: {release}</p>
-                <p className="text-sm text-gray-600">Average Rating: {average}</p>
+            <div className="p-4 text-center flex flex-col justify-between h-28">
+                <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-800 overflow-hidden text-ellipsis">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.releaseDate}</p>
+            </div>
+
+            <div className='container_rating absolute top-64 left-0'>
+                 <RatingCircle rating={item.ratingPercent} /> 
             </div>
         </div>
     );
