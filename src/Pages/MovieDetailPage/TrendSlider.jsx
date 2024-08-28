@@ -6,8 +6,7 @@ import CartGeneral from './CartGeneral';
 const TrendSlider = () => {
 
     const popularItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
-    // console.log("From TrendSlider popularItems",popularItems);
-
+    
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 5;
 
@@ -39,12 +38,6 @@ const TrendSlider = () => {
                         <CartGeneral 
                              item={item}
                              key={item.id}
-                            // id={item.id}
-                            // poster={item.posterPath}
-                            // release={item.releaseDate}
-                            // title={item.title}
-                            // rating={item.ratingPercent}
-                            // type={item.mediaType}
                         />
                     ))}
                 </div>

@@ -16,9 +16,9 @@ import RatingCircle from './RatingCircle';
      }
 
     return (
-        <div onClick={getMovieByID} className="relative flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-48 max-w-48 m-2 cursor-pointer">
+        <div onClick={getMovieByID} className="relative flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-40 cursor-pointer">
 
-            <div className="h-72 w-full overflow-hidden rounded-t-lg mb-4">
+            <div className="h-60 w-full overflow-hidden rounded-t-lg mb-2">
                 <img
                     src={`${IMAGE_BASE_URL}/w200${item.posterPath}`}
                     alt={item.title}
@@ -31,7 +31,7 @@ import RatingCircle from './RatingCircle';
                 <p className="text-sm text-gray-600">{item.releaseDate}</p>
             </div>
 
-            <div className='container_rating absolute top-64 left-0'>
+            <div className='container_rating absolute top-52 left-0'>
                  <RatingCircle rating={item.ratingPercent} /> 
             </div>
         </div>

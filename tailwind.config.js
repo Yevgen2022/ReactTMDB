@@ -11,7 +11,8 @@ module.exports = {
       },
 
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
+        mono: ['Montserrat-Italic', 'monospace'],
       },
       fontWeight: {
         thin: 100,
