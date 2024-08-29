@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import genreReducer from "./Pages/GenrePage/GenreSlice";
 import popularSliderReducer from "./components/PopularSlider/PopularSliderSlice";
-import TrendMovieAndTvSlice from "../src/Pages/MovieDetailPage/popMovieOrTvSlice"
+import TrendMovieAndTvSlice from "../src/components/TrendingSection/TrendingSlice";
 
 
 

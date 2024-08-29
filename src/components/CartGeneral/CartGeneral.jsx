@@ -1,19 +1,18 @@
 import React from 'react';
 import { API_KEY, IMAGE_BASE_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
-import RatingCircle from './RatingCircle';
+import RatingCircle from '../RatingCircle/RatingCircle';
 
-// const CartForPopular = ({ id, poster, release, title, rating,type }) => {
-    const CartForPopular = ({ item }) => {
+const CartForPopular = ({ item }) => {
     const navigate = useNavigate();
 
     const getMovieByID = () => {
-         if (item.mediaType === "movie") {
-        navigate(`/movie/${item.id}?api_key=${API_KEY}`);
-         } else if (item.mediaType === "tv") {
-         navigate(`/tv/${item.id}?api_key=${API_KEY}`);
+        if (item.mediaType === "movie") {
+            navigate(`/movie/${item.id}?api_key=${API_KEY}`);
+        } else if (item.mediaType === "tv") {
+            navigate(`/tv/${item.id}?api_key=${API_KEY}`);
+        }
     }
-     }
 
     return (
         <div onClick={getMovieByID} className="relative flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-40 cursor-pointer">
@@ -22,7 +21,7 @@ import RatingCircle from './RatingCircle';
                 <img
                     src={`${IMAGE_BASE_URL}/w200${item.posterPath}`}
                     alt={item.title}
-                    className="w-full h-full object-fit"
+                    className="w-full h-full object-fill"
                     loading="lazy"
                 />
             </div>
@@ -32,7 +31,7 @@ import RatingCircle from './RatingCircle';
             </div>
 
             <div className='container_rating absolute top-52 left-0'>
-                 <RatingCircle rating={item.ratingPercent} /> 
+                <RatingCircle rating={item.ratingPercent} />
             </div>
         </div>
     );

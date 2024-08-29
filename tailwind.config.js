@@ -25,10 +25,10 @@ module.exports = {
         extraBold: 800,
         black: 900,
       },
-      fontStyle: {
-        italic: 'italic',
-        normal: 'normal',
-      },
+      // fontStyle: {
+      //   italic: 'italic',
+      //   normal: 'normal',
+      // },
 
     },
   },

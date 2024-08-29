@@ -9,8 +9,6 @@ export const fetchTrendMovieAndTv = createAsyncThunk(
         const response = await tmdbApi.fetchTrendAll(timeWindow);
         const processeData = tmdbApi.processTrendData(response)/////return 1 object from objects(2-type).Movie and tv
 
-        console.log('Fetched data:', processeData); ////////////////////////////////
-
         return processeData;
     }
 );
@@ -29,9 +27,7 @@ export const TrendMovieAndTvSlice = createSlice({
     reducers: {
 
         setTimeWindow: (state, action) => {
-            state.timeWindow = action.payload
-
-            console.log("from slice timeWindow", action.payload)//////////////////////////
+            state.timeWindow = action.payload;
         }
     },
 

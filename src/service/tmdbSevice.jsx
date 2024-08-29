@@ -3,42 +3,6 @@ import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "../config";
 
 const tmdbApi = {
 
-    fetchPopularMovies: async () => {
-        try {
-            const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`); //&page=3
-
-            // check status of request
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data.results;
-        } catch (error) {
-            console.error('Error fetching popular movies:', error);
-            return [];
-        }
-    },
-
-
-    fetchTrendMovies: async () => {
-        try {
-            const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`); //&page=3
-
-            // check status of request
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data.results;
-        } catch (error) {
-            console.error('Error fetching popular movies:', error);
-            return [];
-        }
-    },
-
-
     //////////////////////////This we create 2-object for trending block (Movie, Show) START 
     fetchTrendAll: async (timeWindow) => {
         try {
@@ -77,6 +41,67 @@ const tmdbApi = {
         }));
     },
     //////////////////////////This we finished creating 2-object for trending block (Movie, Show) FINISH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    fetchPopularMovies: async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`); //&page=3
+
+            // check status of request
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.results;
+        } catch (error) {
+            console.error('Error fetching popular movies:', error);
+            return [];
+        }
+    },
+
+
+    // fetchTrendMovies: async () => {
+    //     try {
+    //         const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`); //&page=3
+
+    //         // check status of request
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+
+    //         const data = await response.json();
+    //         return data.results;
+    //     } catch (error) {
+    //         console.error('Error fetching popular movies:', error);
+    //         return [];
+    //     }
+    // },
+
+
 
 
 
