@@ -29,7 +29,7 @@ const tmdbApi = {
             title: item.title || item.name, // Choice between title і name
             posterPath: item.poster_path,
             releaseDate: item.release_date || item.first_air_date, // Choice between release_date і first_air_date
-            mediaType: item.media_type, // Type of media
+            mediaType: item.media_type || 'unknown', // Type of media
             originalLanguage: item.original_language,
             overview: item.overview,
             popularity: item.popularity,
@@ -45,9 +45,19 @@ const tmdbApi = {
 
 
     //////////////////////////This we started creating 3-object for popular block (Movie, Show(Tv), animation) START
-     fetchPopular: async (requestParam) => {
+    fetchPopular: async (requestParam) => {
         try {
-            const response = await fetch(`${BASE_URL}/${requestParam}/popular?api_key=${API_KEY}`);
+            let url;
+            
+            if (requestParam === 'movie' || requestParam === 'animation') {
+                url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
+            } else if (requestParam === 'tv') {
+                url = `${BASE_URL}/tv/popular?api_key=${API_KEY}`;
+            } else {
+                throw new Error('Invalid requestParam');
+            }
+    
+            const response = await fetch(url);
     
             // Check status of request
             if (!response.ok) {
@@ -56,11 +66,11 @@ const tmdbApi = {
     
             const data = await response.json();
     
-            // Handle filtering for animation specifically
+            // Filter for animation genre (genre_id: 16)
             if (requestParam === 'animation') {
                 return data.results.filter((element) => element.genre_ids.includes(16));
             }
-
+    
             return data.results;
         } catch (error) {
             console.error(`Error fetching popular ${requestParam}:`, error);
@@ -68,9 +78,11 @@ const tmdbApi = {
         }
     },
     
-     fetchArrayForPopularBlock: async (requestParam) => {
+
+    fetchArrayForPopularBlock: async (requestParam) => {
+        // Directly use the requestParam as argument
         return await tmdbApi.fetchPopular(requestParam);
-    },
+    }, 
     
 
     //////////////////////////This we finihsed creating 3-object for popular block (Movie, Show(Tv), animation) FINISH
