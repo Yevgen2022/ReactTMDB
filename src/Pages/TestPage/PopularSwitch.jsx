@@ -1,65 +1,102 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { setTimeWindow, fetchTrendMovieAndTv } from "./PopularSlice"
+import React, { useState, useEffect, useRef } from 'react';
 
-const TrendingSwitch = () => {
+const PopularSwitch = () => {
+    const [activeTab, setActiveTab] = useState('movie');
+    const [runnerStyle, setRunnerStyle] = useState({});
+    
+    // References to the tab elements
+    const movieTabRef = useRef(null);
+    const tvTabRef = useRef(null);
+    const animationTabRef = useRef(null);
 
-    const [activeTab, setActiveTab] = useState('day'); // State for watching choosing element(day or week)
+    useEffect(() => {
+        const updateRunnerStyle = () => {
+            let tabRef;
+            if (activeTab === 'movie') {
+                tabRef = movieTabRef.current;
+            } else if (activeTab === 'tv') {
+                tabRef = tvTabRef.current;
+            } else if (activeTab === 'animation') {
+                tabRef = animationTabRef.current;
+            }
 
-    // const dispatch = useDispatch();
-    // const timeWindow = useSelector((state) => state.TrendMovieAndTv.timeWindow);
+            if (tabRef) {
+                const tabRect = tabRef.getBoundingClientRect();  //curent block (div)
+                const containerRect = tabRef.parentNode.getBoundingClientRect(); //main container (div className="switch_container)
 
-    // useEffect(() => {
-    //     // if activeTab is changing, refresh timeWindow
-    //     if (timeWindow !== activeTab) {
-    //         dispatch(setTimeWindow(activeTab));
-    //     }
-    //     // download data according to new value of timeWindow
-    //     dispatch(fetchTrendMovieAndTv(activeTab));
-    // }, [dispatch, activeTab, timeWindow]);
+                // Calculate new width and position for switch_runner  
+                const elementLeft = tabRect.left - containerRect.left - 1 ; // the left coordinate of the element relative to the container
+                const elementWidth = tabRect.width;                   // width of the element
+                const runnerWidth = elementWidth;                    // width of switch_runner 
+                const newLeft = elementLeft + (elementWidth / 2) - (runnerWidth / 2) ; // calculate position left for switch_runner          
+              
+                setRunnerStyle({
+                    left: `${newLeft}px`,
+                    width: `${runnerWidth}px`,
+                    height: '100%', 
+                    top: '0',
+                    transition: 'left 0.3s ease, width 0.3s ease',
+                });
+            }
+        };
 
+        // Initial update and update on tab change
+        updateRunnerStyle();
 
+        // Update the runner on window resize
+        window.addEventListener('resize', updateRunnerStyle);
+        
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateRunnerStyle);
+        };
+    }, [activeTab]);
 
-
-    // Click handler to move
     const handleTabClick = (tab) => {
         setActiveTab(tab);
-        //  dispatch(setTimeWindow(tab));//////////Set "Time Window" for "Trending All"
     };
 
-
-    const runnerStyle = {
-        left: '0',
-        transition: 'left 0.2s ease', // Анімація для переміщення
-    };
-    
-    // Застосовуємо умови для визначення позиції "switch runner"
-    if (activeTab === 'movie') {
-        runnerStyle.left = '0';
-    } else if (activeTab === 'animation') {
-        runnerStyle.left = '66.66%'; // Для третього елемента, зсув на 2/3 ширини
-    } else {
-        runnerStyle.left = '33.33%'; // Для другого елемента, зсув на 1/3 ширини
-    }
-
-return (
-    <>
+    return (
         <div className="flex">
             <div>
                 <h2 className="text-2xl">Popular</h2>
             </div>
 
-            <div className="switch_container flex flex-row justify-between items-center w-80 border border-black ml-8 px-6 rounded-full relative">
-                <div className="switch_runer absolute z-0 top-0 left-0 h-full w-1/3 rounded-full bg-black" style={runnerStyle}></div>
-                <h2 className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'movie' ? 'font-medium text-green-500' : ''}`} onClick={() => handleTabClick('movie')}>Movie</h2>
-                <h2 className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'tv' ? 'font-medium text-green-500' : ''}`} onClick={() => handleTabClick('tv')}>On TV</h2>
-                <h2 className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'animation' ? 'font-medium text-green-500' : ''}`} onClick={() => handleTabClick('animation')}>Animation</h2>
+            <div className="switch_container flex flex-row items-stretch w-auto border border-black ml-8 rounded-full relative">
+                <div 
+                    className="switch_runner absolute z-0 top-0 rounded-full bg-gray-800"
+                    style={runnerStyle}
+                ></div>
+
+                <div className="flex items-center justify-center px-5 rounded-full" ref={movieTabRef}>
+                    <h2 
+                        className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'movie' ? 'font-medium text-green-500' : ''}`}
+                        onClick={() => handleTabClick('movie')}
+                    >
+                        Movie
+                    </h2>
+                </div>
+
+                <div className="flex items-center justify-center mx-6 px-5 rounded-full" ref={tvTabRef}>
+                    <h2 
+                        className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'tv' ? 'font-medium text-green-500' : ''}`}
+                        onClick={() => handleTabClick('tv')}
+                    >
+                        On TV
+                    </h2>
+                </div>
+
+                <div className="flex items-center justify-center px-5 rounded-full" ref={animationTabRef}>
+                    <h2 
+                        className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'animation' ? 'font-medium text-green-500' : ''}`}
+                        onClick={() => handleTabClick('animation')}
+                    >
+                        Animation
+                    </h2>
+                </div>
             </div>
         </div>
-    </>
+    );
+};
 
-)
-}
-
-export default TrendingSwitch
+export default PopularSwitch;

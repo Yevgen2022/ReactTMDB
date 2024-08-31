@@ -17,7 +17,7 @@ const NavBar = () => {
           <Link to="/favorites" className="navBar__li">Favorites</Link>
         </li>
         <li className=''>
-          <Link to="/movie-detail" className="navBar__li">Details of movie</Link>
+          <Link to="/movie-detail" className="navBar__li">Test page</Link>
         </li>
         
       </ul>
