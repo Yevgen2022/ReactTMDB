@@ -2,46 +2,47 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import tmdbApi from "../../service/tmdbSevice"
 
 
-// Створення асинхронного thunk для отримання трендових фільмів і ТВ-шоу
-export const fetchTrendMovieAndTv = createAsyncThunk(
-    'timeWindow/fetchTrendMovieAndTv',
-    async (timeWindow) => {
-        const response = await tmdbApi.fetchTrendAll(timeWindow);
+// Створення асинхронного thunk для отримання популярних фільмів, ТВ-шоу або анімації
+export const fetchPopular = createAsyncThunk(
+    'popularTab/fetchPopular',
+    async (popularTab) => {
+        const response = await tmdbApi.fetchArrayForPopularBlock(popularTab);
         const processeData = tmdbApi.processTrendData(response)/////return 1 object from objects(2-type).Movie and tv
-
+        
+        console.log("Object from PopularSlice",processeData)
         return processeData;
     }
 );
 
 const initialState = {
-    timeWindow: "day",
-    trendMovieAndTvArr: [],
+    popularTab: "movie",             //current tab for switch in the popular section
+    arayOfElPopularBlock: [],       //current array relative to the selected position
     loading: false,
     error: null
 
 }
 
-export const TrendMovieAndTvSlice = createSlice({
+export const PopularBlockSlice = createSlice({
     initialState,
-    name: "timeWindow",
+    name: "popularBlock",
     reducers: {
 
-        setTimeWindow: (state, action) => {
-            state.timeWindow = action.payload;
+        setPopularTab: (state, action) => {
+            state.popularTab = action.payload;
         }
     },
 
     extraReducers: (builder) => {
         builder
-            .addCase(fetchTrendMovieAndTv.pending, (state) => {
+            .addCase(fetchPopular.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchTrendMovieAndTv.fulfilled, (state, action) => {
+            .addCase(fetchPopular.fulfilled, (state, action) => {
                 state.loading = false;
                 state.trendMovieAndTvArr = action.payload;
             })
-            .addCase(fetchTrendMovieAndTv.rejected, (state, action) => {
+            .addCase(fetchPopular.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
@@ -51,5 +52,5 @@ export const TrendMovieAndTvSlice = createSlice({
 
 })
 
-export const { setTimeWindow } = TrendMovieAndTvSlice.actions;
-export default TrendMovieAndTvSlice.reducer;
+export const { setPopularTab } = PopularBlockSlice.actions;
+export default PopularBlockSlice.reducer;

@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPopularTab } from './PopularSlice';
 
 const PopularSwitch = () => {
     const [activeTab, setActiveTab] = useState('movie');
     const [runnerStyle, setRunnerStyle] = useState({});
+    const dispatch = useDispatch();
+    const popularTab = useSelector((state) => state.PopularBlock.popularTab);
     
     // References to the tab elements
     const movieTabRef = useRef(null);
     const tvTabRef = useRef(null);
     const animationTabRef = useRef(null);
+
 
     useEffect(() => {
         const updateRunnerStyle = () => {
@@ -52,9 +57,18 @@ const PopularSwitch = () => {
         };
     }, [activeTab]);
 
+
+
     const handleTabClick = (tab) => {
         setActiveTab(tab);
+        dispatch(setPopularTab(tab));
     };
+
+    useEffect (() =>{console.log("Active tab from UseEffect",activeTab)}, [activeTab])//ok
+    useEffect (() =>{console.log("Popular tab from UseEffect",popularTab)}, [popularTab])
+
+
+
 
     return (
         <div className="flex">
