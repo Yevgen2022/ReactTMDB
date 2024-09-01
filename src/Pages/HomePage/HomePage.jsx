@@ -13,9 +13,6 @@ import { useEffect } from "react";
 const HomePage = () => {
 
     const trendingItems = useSelector((state)=> state.TrendMovieAndTv.trendMovieAndTvArr);
-    
-
-
 
     return (
         <section className="">

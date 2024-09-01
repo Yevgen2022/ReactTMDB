@@ -15,7 +15,7 @@ export const fetchTrendMovieAndTv = createAsyncThunk(
 
 const initialState = {
     timeWindow: "day",
-    trendMovieAndTvArr: [],
+    trendMovieAndTvArr: [],  
     loading: false,
     error: null
 

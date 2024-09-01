@@ -36,9 +36,9 @@ const SliderGeneral = ({arrayItems}) => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(window.innerWidth);
-    }, [itemsPerPage]);
+    // useEffect(() => {
+    //     console.log(window.innerWidth);
+    // }, [itemsPerPage]);
 
     const handleScroll = (direction) => {
         if (direction === 'left' && currentPage > 0) {
