@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
-import CartOfOneMovie from '../CartOfOneMovie/CartOfOneMovie';
-
-
 
 const NavBar = () => {
   return (

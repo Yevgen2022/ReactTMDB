@@ -1,13 +1,14 @@
 import React from "react";
-// import PopularSection from "./PopularSection";
+import TrendingSection from "./TrendingSection/TrendingSection";
+import { useSelector } from "react-redux";
 
 const TestPage = () => {
 
+    const trendingItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
+
     return (
         <>
-
-           {/* < PopularSection/>  */}
-
+          <TrendingSection trendingItems={trendingItems}/>
         </>
 
     )

@@ -15,7 +15,7 @@ const CartForPopular = ({ item }) => {
     }
 
     return (
-        <div onClick={getMovieByID} className="relative flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-lg w-40 cursor-pointer">
+        <div onClick={getMovieByID} className="relative flex flex-col items-center border border-gray-300 rounded-lg overflow-hidden shadow-2xl w-40 cursor-pointer bg-gray-200">
 
             <div className="h-60 w-full overflow-hidden rounded-t-lg mb-2">
                 <img

@@ -1,9 +1,9 @@
 import React from "react";
-import SliderGeneral from "../Slider/SliderGeneral";
-import PopularSwitch from "./PopularSwitch";
+import SliderGeneral from "./SliderGeneral";
+import TrendingSwitch from "./TrendingSwitch";
 
 
-const PopularSection = ({popularItems}) => {
+const TrendingSection = ({trendingItems}) => {
 
     return (
 
@@ -11,10 +11,10 @@ const PopularSection = ({popularItems}) => {
 
             <div className="overflow-hidden w-4/5 my-auto">
                 <div className="my-4">
-                    < PopularSwitch />
+                    < TrendingSwitch />
                 </div>
                 <div>
-                    <SliderGeneral arrayItems = {popularItems} />
+                    <SliderGeneral arrayItems = {trendingItems} />
                 </div>
             </div>
         </div>
@@ -22,4 +22,4 @@ const PopularSection = ({popularItems}) => {
     )
 
 }
-export default PopularSection;
+export default TrendingSection;

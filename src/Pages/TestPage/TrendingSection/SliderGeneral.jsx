@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CartGeneral from '../CartGeneral/CartGeneral';
+import CartGeneral from '../../../components/CartGeneral/CartGeneral';
 
 const SliderGeneral = ({ arrayItems }) => {
 

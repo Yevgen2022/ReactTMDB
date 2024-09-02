@@ -15,9 +15,9 @@ const HomePage = () => {
     return (
         <section className="">
 
-            {/* <div>
+            <div>
                 < TrendingSection trendingItems={trendingItems} />
-            </div> */}
+            </div>
 
             <div>
                 < PopularSection popularItems={popularItems} />
