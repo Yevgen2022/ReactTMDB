@@ -8,22 +8,38 @@ const TrendingSwitch = () => {
     const [activeTab, setActiveTab] = useState('day'); // State for watching choosing element(day or week)
 
     const dispatch = useDispatch();
-    const timeWindow = useSelector((state) => state.TrendMovieAndTv.timeWindow);
+    // const timeWindow = useSelector((state) => state.TrendMovieAndTv.timeWindow);
 
     // Click handler to move
     const handleTabClick = (tab) => {
+        if(tab != activeTab){
         setActiveTab(tab);
-        dispatch(setTimeWindow(tab));//////////Set "Time Window" for "Trending All"
+        }
+        //dispatch(setTimeWindow(tab));//////////Set "Time Window" for "Trending All"
     };
 
+
+
+
+
+
+    // useEffect(() => {
+    //     // if activeTab is changing, refresh timeWindow
+    //     if (timeWindow !== activeTab) {
+    //         dispatch(setTimeWindow(activeTab));
+    //     }
+    //     // download data according to new value of timeWindow
+    //     dispatch(fetchTrendMovieAndTv(activeTab));
+    // }, [dispatch, activeTab, timeWindow]);
     useEffect(() => {
-        // if activeTab is changing, refresh timeWindow
-        if (timeWindow !== activeTab) {
-            dispatch(setTimeWindow(activeTab));
-        }
-        // download data according to new value of timeWindow
+        // Dispatch the fetch action when activeTab changes
         dispatch(fetchTrendMovieAndTv(activeTab));
-    }, [dispatch, activeTab, timeWindow]);
+        // Update the time window in Redux state
+        dispatch(setTimeWindow(activeTab));
+    }, [dispatch, activeTab]);
+
+
+
 
 
     const runnerStyle = {

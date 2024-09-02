@@ -1,39 +1,30 @@
 import React from "react";
 
-import PopularSlider from "../../components/PopularSlider/PopularSlider";
-import PopularRadioButton from "../../components/PopularRadioButton/PopularRadioButton";
-
 import TrendingSection from "../../components/TrendingSection/TrendingSection";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import PopularSection from "../../components/PopularSection/PopularSection";
 
 
 
 
 const HomePage = () => {
 
-    const trendingItems = useSelector((state)=> state.TrendMovieAndTv.trendMovieAndTvArr);
+    const trendingItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
+    const popularItems = useSelector((state) => state.PopularBlock.popularContent)
 
     return (
         <section className="">
 
+            {/* <div>
+                < TrendingSection trendingItems={trendingItems} />
+            </div> */}
+
             <div>
-                < TrendingSection trendingItems = {trendingItems}/>
+                < PopularSection popularItems={popularItems} />
             </div>
 
 
-           
 
-
-
-            <div>
-                < PopularRadioButton />
-            </div>
-
-
-            <div>
-                < PopularSlider />
-            </div>
         </section>
     )
 }

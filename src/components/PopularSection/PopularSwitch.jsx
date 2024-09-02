@@ -60,8 +60,10 @@ const PopularSwitch = () => {
 
 
     const handleTabClick = (tab) => {
-        setActiveTab(tab);
-        dispatch(setPopularTab(tab));
+        if (tab !== activeTab) {
+            setActiveTab(tab);
+        }
+        // dispatch(setPopularTab(tab));
     };
 
     // useEffect (() =>{console.log("Active tab from UseEffect",activeTab)}, [activeTab])

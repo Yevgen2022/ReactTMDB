@@ -1,12 +1,12 @@
 import React from "react";
-import PopularSection from "./PopularSection";
+// import PopularSection from "./PopularSection";
 
 const TestPage = () => {
 
     return (
         <>
 
-           < PopularSection/> 
+           {/* < PopularSection/>  */}
 
         </>
 

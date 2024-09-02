@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import CartGeneral from '../CartGeneral/CartGeneral';
 
 const SliderGeneral = ({arrayItems}) => {
-    // const popularItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
-
+ 
+    console.log("From Slider",arrayItems) 
 
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(6);

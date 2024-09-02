@@ -4,6 +4,7 @@ import TrendingSwitch from "./TrendingSwitch";
 
 
 const TrendingSection = ({trendingItems}) => {
+    console.log('Trending Items:', trendingItems);
     return (
 
         <div className='flex justify-center my-4 w-full'>

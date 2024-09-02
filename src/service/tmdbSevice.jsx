@@ -4,9 +4,9 @@ import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "../config";
 const tmdbApi = {
 
     //////////////////////////This we create 2-object for trending block (Movie, Show) START 
-    fetchTrendAll: async (timeWindow) => {
+    fetchTrendAll: async (timeWindow,page) => {
         try {
-            const response = await fetch(`${BASE_URL}/trending/all/${timeWindow}?api_key=${API_KEY}&page=9`); //&page=3
+            const response = await fetch(`${BASE_URL}/trending/all/${timeWindow}?api_key=${API_KEY}&page=${page}`); //&page=3
 
             // check status of request
             if (!response.ok) {
@@ -45,45 +45,36 @@ const tmdbApi = {
 
 
     //////////////////////////This we started creating 3-object for popular block (Movie, Show(Tv), animation) START
-    fetchPopular: async (requestParam) => {
+    
+    fetchPopularAll: async (requestParam, page) => {
         try {
             let url;
-            
-            if (requestParam === 'movie' || requestParam === 'animation') {
-                url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
+
+            if (requestParam === 'movie')
+                 {url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`;
             } else if (requestParam === 'tv') {
-                url = `${BASE_URL}/tv/popular?api_key=${API_KEY}`;
-            } else {
-                throw new Error('Invalid requestParam');
-            }
-    
+                url = `${BASE_URL}/tv/popular?api_key=${API_KEY}&page=${page}`;
+            } else if (requestParam === 'animation')
+                {url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&page=${page}&with_genres=16&language=en-US`;
+            }else{
+               throw new Error('Invalid requestParam'); 
+            } 
+
             const response = await fetch(url);
     
-            // Check status of request
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
     
-            const data = await response.json();
-    
-            // Filter for animation genre (genre_id: 16)
-            if (requestParam === 'animation') {
-                return data.results.filter((element) => element.genre_ids.includes(16));
-            }
-    
+
+            const data = await response.json(); 
             return data.results;
         } catch (error) {
             console.error(`Error fetching popular ${requestParam}:`, error);
             return [];
         }
     },
-    
-
-    fetchArrayForPopularBlock: async (requestParam) => {
-        // Directly use the requestParam as argument
-        return await tmdbApi.fetchPopular(requestParam);
-    }, 
-    
+   
 
     //////////////////////////This we finihsed creating 3-object for popular block (Movie, Show(Tv), animation) FINISH
 

@@ -1,9 +1,11 @@
 import React from "react";
-// import SliderGeneral from "../Slider/SliderGeneral";
+import SliderGeneral from "../Slider/SliderGeneral";
 import PopularSwitch from "./PopularSwitch";
 
 
-const PopularSection = ({trendingItems}) => {
+const PopularSection = ({popularItems}) => {
+    console.log('Popular Items:', popularItems);
+
     return (
 
         <div className='flex justify-center my-4 w-full'>
@@ -13,7 +15,7 @@ const PopularSection = ({trendingItems}) => {
                     < PopularSwitch />
                 </div>
                 <div>
-                    {/* <SliderGeneral arrayItems = {trendingItems} /> */}
+                    <SliderGeneral arrayItems = {popularItems} />
                 </div>
             </div>
         </div>
