@@ -7,7 +7,14 @@ const fetchMultiplePages = async (popularTab, totalItems = 120) => {
 
     while (combinedResults.length < totalItems) {
         const response = await tmdbApi.fetchPopularAll(popularTab, page);
-        const processedData = tmdbApi.processTrendData(response);
+        const processedData = tmdbApi.processTrendData(response);         //return object(general) for HomePage
+        processedData.forEach(element => {
+            if (popularTab === "movie" || popularTab === "animation"){
+                 element.mediaType = "movie";
+               }else {
+                element.mediaType = "tv";
+               }
+        });
 
         combinedResults = [...combinedResults, ...processedData];
         
