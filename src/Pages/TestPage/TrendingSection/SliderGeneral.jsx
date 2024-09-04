@@ -52,7 +52,7 @@ const SliderGeneral = ({ arrayItems }) => {
 
     return (
         <>
-            <div className="relative overflow-hidden border border-black">
+            <div className="relative overflow-hidden">
                 <button
                     className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
                     onClick={() => handleScroll('left')}
@@ -61,7 +61,7 @@ const SliderGeneral = ({ arrayItems }) => {
                     ❮
                 </button>
 
-                <div className="flex my-5 mx-8 gap-x-12 px-4 justify-center border border-green-700">
+                <div className="flex my-5 mx-8 gap-x-12 px-4 justify-center">
                     {pages[currentPage]?.length > 0 && pages[currentPage].map((item) => (
                         <CartGeneral
                             item={item}

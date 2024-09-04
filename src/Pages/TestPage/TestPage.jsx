@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 const TestPage = () => {
 
-    const trendingItems = useSelector((state) => state.TrendMovieAndTv.trendMovieAndTvArr);
+    const trendingItems = useSelector((state) => state.TrendMovieAndTv2.trendMovieAndTvArr);
+    console.log("FromTestPage",trendingItems)
 
     return (
         <>
@@ -14,4 +15,4 @@ const TestPage = () => {
     )
 }
 
-export default TestPage
+export default TestPage;

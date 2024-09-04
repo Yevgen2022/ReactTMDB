@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { setTimeWindow, fetchTrendMovieAndTv } from "./TrendingSlice"
+import { setTimeWindow, fetchTrendMovieAndTv } from "./TrendingSlice2"
 
 const TrendingSwitch = () => {
 
@@ -12,35 +12,17 @@ const TrendingSwitch = () => {
 
     // Click handler to move
     const handleTabClick = (tab) => {
-        if(tab != activeTab){
+        if(tab !== activeTab){
         setActiveTab(tab);
         }
-        //dispatch(setTimeWindow(tab));//////////Set "Time Window" for "Trending All"
     };
 
-
-
-
-
-
-    // useEffect(() => {
-    //     // if activeTab is changing, refresh timeWindow
-    //     if (timeWindow !== activeTab) {
-    //         dispatch(setTimeWindow(activeTab));
-    //     }
-    //     // download data according to new value of timeWindow
-    //     dispatch(fetchTrendMovieAndTv(activeTab));
-    // }, [dispatch, activeTab, timeWindow]);
     useEffect(() => {
         // Dispatch the fetch action when activeTab changes
         dispatch(fetchTrendMovieAndTv(activeTab));
         // Update the time window in Redux state
         dispatch(setTimeWindow(activeTab));
     }, [dispatch, activeTab]);
-
-
-
-
 
     const runnerStyle = {
         left: activeTab === 'day' ? '0' : 'calc(100% - 50%)', // moving
@@ -59,6 +41,8 @@ const TrendingSwitch = () => {
                     <h2 className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'day' ? 'font-medium text-green-500' : ''}`} onClick={() => handleTabClick('day')}>Today</h2>
                     <h2 className={`switch_selected rounded-full inline-block hover:cursor-pointer z-10 ${activeTab === 'week' ? 'font-medium text-green-500' : ''}`} onClick={() => handleTabClick('week')}>This week</h2>
                 </div>
+
+
             </div>
         </>
 
