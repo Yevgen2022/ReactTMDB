@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactTMDB/static/css/main.cb833384.css",
-    "main.js": "/ReactTMDB/static/js/main.b3ca391f.js",
+    "main.css": "/ReactTMDB/static/css/main.6937608a.css",
+    "main.js": "/ReactTMDB/static/js/main.970bbbff.js",
+    "static/media/Montserrat-Italic-VariableFont_wght.ttf": "/ReactTMDB/static/media/Montserrat-Italic-VariableFont_wght.7451547bd28d8dddbeea.ttf",
+    "static/media/Montserrat-VariableFont_wght.ttf": "/ReactTMDB/static/media/Montserrat-VariableFont_wght.7e687123cd4528224ce5.ttf",
     "index.html": "/ReactTMDB/index.html",
-    "main.cb833384.css.map": "/ReactTMDB/static/css/main.cb833384.css.map",
-    "main.b3ca391f.js.map": "/ReactTMDB/static/js/main.b3ca391f.js.map"
+    "main.6937608a.css.map": "/ReactTMDB/static/css/main.6937608a.css.map",
+    "main.970bbbff.js.map": "/ReactTMDB/static/js/main.970bbbff.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb833384.css",
-    "static/js/main.b3ca391f.js"
+    "static/css/main.6937608a.css",
+    "static/js/main.970bbbff.js"
   ]
 }
