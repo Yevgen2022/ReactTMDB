@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import CartGeneral from '../../../components/CartGeneral/CartGeneral';
 
+import { useSelector } from 'react-redux';
+
 const SliderGeneral = ({ arrayItems }) => {
 
-    const [currentPage, setCurrentPage] = useState(0);
+    //const [currentPage, setCurrentPage] = useState(0);     //previous value
+    const currentPage = useSelector((state) => state.TrendMovieAndTvSlice2.setCurrentPageSlice);
+
     const [itemsPerPage, setItemsPerPage] = useState(6);
 
     useEffect(() => {
@@ -37,6 +41,8 @@ const SliderGeneral = ({ arrayItems }) => {
     useEffect(() => {
         setCurrentPage(0);
     }, [arrayItems]);
+
+
 
     const handleScroll = (direction) => {
         if (direction === 'left' && currentPage > 0) {

@@ -10,7 +10,7 @@ const fetchMultiplePages = async (timeWindow, totalItems = 120) => {
         const processedData = tmdbApi.processTrendData(response);
 
         combinedResults = [...combinedResults, ...processedData];
-        
+
         // If less data is received than expected, it may mean that pages have run out
         if (processedData.length === 0) {
             break;
@@ -43,14 +43,14 @@ export const fetchTrendMovieAndTv = createAsyncThunk(
 
 const initialState = {
     timeWindow: "day",
-    trendMovieAndTvArr: [],  
+    trendMovieAndTvArr: [],
     loading: false,
     error: null,
 
-    totalItems:120,
-    totalPages:0,
+    totalItems: 120,    //Limit object for array
+    totalPages: 0,     // pages for slider
+    currentPageSlice: 1,   //Connect with TotalInformation and SliderGeneral
 
-    
 
 }
 
@@ -65,8 +65,11 @@ export const TrendMovieAndTvSlice2 = createSlice({
 
         setTotalItems: (state, action) => {
             state.totalItems = action.payload;
-        }
+        },
 
+        setCurrentPageSlice: (state, action) => {
+            state.currentPage = action.payload;
+        }
 
     },
 
@@ -91,5 +94,5 @@ export const TrendMovieAndTvSlice2 = createSlice({
 
 })
 
-export const { setTimeWindow } = TrendMovieAndTvSlice2.actions;
+export const { setTimeWindow,setCurrentPageSlice } = TrendMovieAndTvSlice2.actions;
 export default TrendMovieAndTvSlice2.reducer;
