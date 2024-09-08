@@ -68,7 +68,10 @@ export const TrendMovieAndTvSlice2 = createSlice({
         },
 
         setCurrentPageSlice: (state, action) => {
-            state.currentPage = action.payload;
+            state.currentPageSlice = action.payload;
+        },
+        setTotalPages: (state, action) => {
+            state.totalPages = action.payload; // Оновлюємо кількість сторінок
         }
 
     },
@@ -82,7 +85,7 @@ export const TrendMovieAndTvSlice2 = createSlice({
             .addCase(fetchTrendMovieAndTv.fulfilled, (state, action) => {
                 state.loading = false;
                 state.trendMovieAndTvArr = action.payload.results;
-                state.totalPages = action.payload.totalPages
+                state.totalPages = action.payload.totalPages;
             })
             .addCase(fetchTrendMovieAndTv.rejected, (state, action) => {
                 state.loading = false;
@@ -94,5 +97,5 @@ export const TrendMovieAndTvSlice2 = createSlice({
 
 })
 
-export const { setTimeWindow,setCurrentPageSlice } = TrendMovieAndTvSlice2.actions;
+export const { setTimeWindow,setCurrentPageSlice,setTotalPages } = TrendMovieAndTvSlice2.actions;
 export default TrendMovieAndTvSlice2.reducer;
