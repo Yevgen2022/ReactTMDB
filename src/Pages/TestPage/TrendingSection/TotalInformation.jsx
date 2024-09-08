@@ -43,12 +43,10 @@ const TotalInformation = () => {
                             control: (base) => ({
                                 ...base,
                                 backgroundColor: 'inherit',
-                                color: 'white',
+                                // color: 'white',
                                 width: '80px',
                                 borderRadius: '5px',
                                 fontSize:'14px',
-                                padding:'0px',
-                                margin: '0px'
                             }),
                             option: (base, state) => ({
                                 ...base,
