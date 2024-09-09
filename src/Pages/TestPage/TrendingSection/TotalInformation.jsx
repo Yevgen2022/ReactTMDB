@@ -21,7 +21,7 @@ const TotalInformation = () => {
     // console.log(totalPages);
 
     // для селекта
-    const options = pageNumbers.map((item) => ({     
+    const options = pageNumbers.map((item) => ({
         value: item,
         label: item
     }));
@@ -44,25 +44,51 @@ const TotalInformation = () => {
                                 ...base,
                                 backgroundColor: 'inherit',
                                 // color: 'white',
-                                width: '80px',
+                                width: '50px',
+                                minHeight: '30px',
                                 borderRadius: '5px',
-                                fontSize:'14px',
+                                fontSize: '12px',
+                                fontStyle: 'italic',
+                                padding: '0px',
+                                display: 'flex', // Використовуємо Flexbox
+                                justifyContent: 'center', // Горизонтальне вирівнювання по центру
+                                alignItems: 'center', // Вертикальне вирівнювання по центру
                             }),
+                            valueContainer: (base) => ({
+                                ...base,
+                                padding: '0 2px', // Мінімальні відступи для вміщення тексту
+                            }),
+                            dropdownIndicator: (base) => ({
+                                ...base,
+                                padding: '0', // Прибрати відступ у правого індикатора
+                                // display: 'none', // Прибрати індикатор (опційно)
+                            }),
+                            // clearIndicator: (base) => ({
+                            //     ...base,
+                            //     padding: '0', // Прибрати відступ
+                            //    // display: 'none', // Прибрати індикатор очищення (опційно)
+                            // }),
                             option: (base, state) => ({
                                 ...base,
                                 backgroundColor: state.isFocused ? 'lightgray' : 'white',
                                 color: 'black',
                             }),
-                            menu:(base) =>({
+                            menu: (base) => ({
                                 ...base,
-                                
+
                             }),
 
-                            menuList:(base) =>({
+                            menuList: (base) => ({
                                 ...base,
                                 fontStyle: 'italic',
                                 fontSize: '14px'
-                            })
+                            }),
+                            singleValue: (base) => ({
+                                ...base,
+                                color: 'blue', // Колір тексту обраного значення
+                                fontWeight: 'bold', // Жирний шрифт
+                                textAlign: 'center', // Вирівнювання тексту по центру
+                            }),
                         }}
                     />
 
