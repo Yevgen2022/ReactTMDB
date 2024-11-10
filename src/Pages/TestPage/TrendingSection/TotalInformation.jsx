@@ -33,7 +33,7 @@ const TotalInformation = () => {
                     <p className="text-base italic text-gray-400">Total Results : {totalItems}</p>
                 </div>
                 <div className="flex flex-row" >
-                    <label className="text-base italic text-gray-400" htmlFor="numberPage">Number page:</label>
+                    <label className="text-base italic text-gray-400 mr-2" htmlFor="numberPage">Number page:</label>
 
                     <Select
                         value={options[currentPage]}
@@ -45,7 +45,7 @@ const TotalInformation = () => {
                                 backgroundColor: 'inherit',
                                 // color: 'white',
                                 width: '50px',
-                                minHeight: '30px',
+                                minHeight: '20px',
                                 borderRadius: '5px',
                                 fontSize: '12px',
                                 fontStyle: 'italic',
@@ -85,7 +85,7 @@ const TotalInformation = () => {
                             }),
                             singleValue: (base) => ({
                                 ...base,
-                                color: 'blue', // Колір тексту обраного значення
+                                color: 'green', // Колір тексту обраного значення
                                 fontWeight: 'bold', // Жирний шрифт
                                 textAlign: 'center', // Вирівнювання тексту по центру
                             }),
